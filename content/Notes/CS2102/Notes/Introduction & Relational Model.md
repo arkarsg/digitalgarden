@@ -69,6 +69,7 @@ The complex, low level code is moved from application logic to DBMS which offers
 - **Durability**: After commit of transaction, its effects are permanent even in case of failures.
 
 ![[assets/dbtransitiongraph.png]]
+![](assets/dbtransitiongraph.png){width=300 height=200}
 
 ## Concurrent transactions
 
