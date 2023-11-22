@@ -68,7 +68,7 @@ The complex, low level code is moved from application logic to DBMS which offers
 - **Isolation**: execution of transaction is isolated from effects of concurrent transaction
 - **Durability**: After commit of transaction, its effects are permanent even in case of failures.
 
-![[dbtransitiongraph.png| -m | -center]]
+![[assets/dbtransitiongraph.png| -m | -center]]
 
 ## Concurrent transactions
 
