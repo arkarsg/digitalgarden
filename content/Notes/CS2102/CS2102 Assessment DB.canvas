@@ -1,0 +1,39 @@
+{
+	"nodes":[
+		{"id":"9342d43700a5ef34","type":"text","text":"# Locations\n- ==name== : *primary key*\n- **country** ","x":80,"y":580,"width":250,"height":156},
+		{"id":"62a2dd733dc267b9","type":"text","text":"# Countries\n- ==code== *primary key*\n- **name** : unique not null\n- **subregion**: Not Null","x":-390,"y":274,"width":250,"height":217},
+		{"id":"e6b73f50497568e3","type":"text","text":"# Subregions\n==name==: *primary key*\n**region** : NOT NULL","x":-390,"y":21,"width":296,"height":120},
+		{"id":"d747f5e47ba9b37d","type":"text","text":"# Regions\n#### ==name==\n- *primary key*\n- VARCHAR(32)\n","x":-390,"y":-220,"width":260,"height":180},
+		{"id":"a7297d641db595c6","type":"text","text":"# Teams\n- ==name== : *primary key*\n- **country**","x":-45,"y":-269,"width":250,"height":229},
+		{"id":"93975b82b84aa618","type":"text","text":"# Stages\n- ==nr== (int) : *primary key*\n- **day**\n- **Start**\n- **Finish**\n- **length**\n- **type**","x":880,"y":610,"width":250,"height":252},
+		{"id":"66c57763ed872aaf","type":"text","text":"# Riders\n- ==bib== (int): *primary key*\n- **name**\n- **dob**\n- **country**\n- **team**","x":880,"y":224,"width":250,"height":267},
+		{"id":"d201a2f0cbd04f2d","type":"text","text":"# Sprints\n- **stage** (int) not null\n- **location**\n- **distance**\n- ==(stage, location)== : *primary key*","x":80,"y":1120,"width":250,"height":235,"color":"5"},
+		{"id":"a9052f65bd343f9b","type":"text","text":"# Mountains\n- **stage** (int) not null\n- **location**\n- **distance**\n- **height**\n- **length**\n- **percent**\n- **category**\n- ==(stage, location)== : *primary key*","x":45,"y":1355,"width":320,"height":320,"color":"5"},
+		{"id":"7c32340cc226151f","type":"text","text":"# Results_sprints\n- **stage**\n- **location**\n- **rank**\n- **rider**\n- **points**\n- ==(stage, location, rank, rider)== : *primary key*\n\n","x":1560,"y":1238,"width":378,"height":282,"color":"5"},
+		{"id":"97a9223175ded684","type":"text","text":"# Results_mountains\n- **stage**\n- **location**\n- **rank**\n- **rider**\n- **points**\n- ==(stage, location, rank, rider)== : *primary key*\n\n","x":1560,"y":1558,"width":378,"height":282,"color":"5"},
+		{"id":"a778baca53a00684","type":"text","text":"# Results_individual\n- **stage**\n- **rank**\n- **rider**\n- **time**\n- **bonus**\n- **penalty**\n- ==(stage, rank, rider)== : *primary key*\n\n","x":2040,"y":439,"width":378,"height":282,"color":"5"},
+		{"id":"a532429e3d7c9b33","type":"text","text":"# Results_combative\n- **stage**\n- **rider**\n- ==(stage, rider)== : *primary key*","x":2040,"y":736,"width":378,"height":184,"color":"5"}
+	],
+	"edges":[
+		{"id":"61247929aaba307f","fromNode":"e6b73f50497568e3","fromSide":"left","toNode":"d747f5e47ba9b37d","toSide":"left","toEnd":"none","color":"4","label":"region -> Regions(name)"},
+		{"id":"ac5a9cd51b55c24b","fromNode":"62a2dd733dc267b9","fromSide":"left","toNode":"e6b73f50497568e3","toSide":"left","toEnd":"none","color":"4","label":"subregion -> subregions(name)"},
+		{"id":"d3e4b772ea4227f9","fromNode":"a7297d641db595c6","fromSide":"bottom","toNode":"62a2dd733dc267b9","toSide":"right","toEnd":"none","color":"3","label":"country -> countries(code)\n(ON UPDATE CASCADE)"},
+		{"id":"d6d47a43c2ae92e7","fromNode":"66c57763ed872aaf","fromSide":"left","toNode":"a7297d641db595c6","toSide":"right","toEnd":"none","color":"3","label":"team -> Teams(name)\n(ON UPDATE CASCADE)"},
+		{"id":"5a6588db3f100662","fromNode":"66c57763ed872aaf","fromSide":"left","toNode":"62a2dd733dc267b9","toSide":"bottom","toEnd":"none","color":"3","label":"country -> Countries(code)\n(ON UPDATE CASCADE)"},
+		{"id":"88532362b25e34bd","fromNode":"9342d43700a5ef34","fromSide":"left","toNode":"62a2dd733dc267b9","toSide":"bottom","toEnd":"none","color":"2","label":"country -> Countries(code)\n(ON UPDATE CASCADE)"},
+		{"id":"5662f470cb2c9e4c","fromNode":"93975b82b84aa618","fromSide":"left","toNode":"9342d43700a5ef34","toSide":"right","toEnd":"none","color":"2","label":"start -> Locations(name)\n(ON UPDATE CASCADE)"},
+		{"id":"e47f638f9a99c58c","fromNode":"93975b82b84aa618","fromSide":"left","toNode":"9342d43700a5ef34","toSide":"bottom","toEnd":"none","color":"2","label":"finish -> Locations(name)\n(ON UPDATE CASCADE)"},
+		{"id":"f7bb8178e1a63b02","fromNode":"d201a2f0cbd04f2d","fromSide":"top","toNode":"9342d43700a5ef34","toSide":"bottom","toEnd":"none","color":"1","label":"location -> Locations(name)"},
+		{"id":"4185bbb306492b4d","fromNode":"d201a2f0cbd04f2d","fromSide":"top","toNode":"93975b82b84aa618","toSide":"bottom","toEnd":"none","color":"1","label":"stage -> Stage(nr)"},
+		{"id":"6749017a08e76fdf","fromNode":"a9052f65bd343f9b","fromSide":"top","toNode":"9342d43700a5ef34","toSide":"bottom","toEnd":"none","color":"1"},
+		{"id":"dd457409b5b7376c","fromNode":"a9052f65bd343f9b","fromSide":"right","toNode":"93975b82b84aa618","toSide":"bottom","toEnd":"none","color":"1","label":"stage -> Stage(nr)"},
+		{"id":"e92fe2e7de1ceea2","fromNode":"a778baca53a00684","fromSide":"left","toNode":"66c57763ed872aaf","toSide":"right","toEnd":"none","color":"5","label":"rider -> Riders(bib)"},
+		{"id":"269838b3817b5f88","fromNode":"a778baca53a00684","fromSide":"left","toNode":"93975b82b84aa618","toSide":"right","toEnd":"none","color":"5","label":"stage -> stages(nr)"},
+		{"id":"7c9ac77b3bd6723f","fromNode":"7c32340cc226151f","fromSide":"left","toNode":"66c57763ed872aaf","toSide":"right","toEnd":"none","color":"5","label":"rider -> Riders(bib)"},
+		{"id":"365cdf2c4384a195","fromNode":"7c32340cc226151f","fromSide":"left","toNode":"d201a2f0cbd04f2d","toSide":"right","toEnd":"none","color":"5","label":"stage, location -> Sprints(stage, location)"},
+		{"id":"1c4c0273c163bcaa","fromNode":"97a9223175ded684","fromSide":"left","toNode":"a9052f65bd343f9b","toSide":"right","toEnd":"none","color":"5","label":"stage, location -> Mountains(stage, location)"},
+		{"id":"dfe6c0ed606296d4","fromNode":"97a9223175ded684","fromSide":"left","toNode":"66c57763ed872aaf","toSide":"right","toEnd":"none","color":"5","label":"rider -> Riders(bib)"},
+		{"id":"5071f4e9972cec65","fromNode":"a532429e3d7c9b33","fromSide":"left","toNode":"93975b82b84aa618","toSide":"right","toEnd":"none","color":"4","label":"stage -> Stage(nr)"},
+		{"id":"fa8210621d13436d","fromNode":"a532429e3d7c9b33","fromSide":"left","toNode":"66c57763ed872aaf","toSide":"right","toEnd":"none","color":"4","label":"rider -> Riders(bib)"}
+	]
+}
