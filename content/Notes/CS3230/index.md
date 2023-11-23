@@ -1,4 +1,8 @@
-#cs3230 #admin 
+---
+title: Design and Analysis of algorithms
+tags:
+- cs3230
+---
 
 # Design Patterns
 - [[Stable Matching]]

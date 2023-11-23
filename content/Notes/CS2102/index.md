@@ -1,4 +1,8 @@
-#admin #cs2102
+---
+title: Database Systems
+tags:
+- cs2102
+---
 # Database Systems
 
 ## Schedule

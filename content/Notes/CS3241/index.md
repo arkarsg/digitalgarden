@@ -1,4 +1,8 @@
-#cs3241 #admin 
+---
+title: Computer Graphics
+tags:
+- cs3241
+---
 # Computer Graphics
 
 
