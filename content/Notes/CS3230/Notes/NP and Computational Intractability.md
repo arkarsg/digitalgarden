@@ -445,3 +445,25 @@ Let there be an instance of 3-SAT with $n$ variables and $k$ clauses
 #### How to prove $X$ is NP-complete
 1. $X \in$ NP → Define what the *certificate* and *verifier* **OR** a non-deterministic algorithm
 2. Prove that $X$ is NP-hard → reduce from some known $NP$-complete problem $Y$ to $X$
+
+---
+# Taxonomy of problems
+## Packing problem
+Given a collection of objects, choose $k$ objects. However, there is a set of conflicts that prevent you from choosing certain groups simultaneously.
+
+## Covering problems
+- Natural contrast to packing problems
+
+Given a collection of objects, choose a *subset* that collectively achieves a certain goal.
+
+## Partitioning problem
+Involves a search over all ways to divide up a collection of objects into subsets so that each object appears in *exactly one of the subsets*.
+
+## Sequencing problem
+- Involves searching over a set of all permutations of a collection of objects.
+
+## Numerical problems
+Usually reduce to subset sum
+
+## Constraint satisfaction
+Consider basic satisfaction problems such as 3-SAT, CIRCUIT-SAT,

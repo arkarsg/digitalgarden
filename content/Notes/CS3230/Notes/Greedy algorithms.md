@@ -1,5 +1,4 @@
 # Interval scheduling
----
 Job $j$ starts at $s_j$ and finishes at $f_j$ and two jobs are compatible if they do not overlap.
 
 **Goal**: find maximum subset of mutually compatible jobs.

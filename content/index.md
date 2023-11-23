@@ -1,6 +1,6 @@
 ```toggl
 summary
-past 5 days
+past 6 days
 ```
 
 # Notes

@@ -1,7 +1,7 @@
 >[!note] 
 >Suppose I need to solve an NP-hard problem, then we need to sacrifice one of three desired features
 >
->- Solve problem to optimality
+>- Solve problem to ox3ptimality
 >- Most approximation algorithms are greedy
 
 
