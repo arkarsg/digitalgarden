@@ -469,16 +469,68 @@ Decompose the table that violates 3NF
 >5NF : Based on keys, join dependencies
 >
 >These rarely occur as it depends on multi-valued and join dependencies.
-
+--- 
 ## BCNF
 >[!note]
 >A relation is BCNF whenever $X → A$ holds in $R$, then $X$ is a superkey of $R$
-
-![[Screenshot 2023-11-21 at 12.28.11 PM.png | -center]]
+>
+>A table $R$ is in BCNF if every non-trivial and decomposed FD has a superkey on its LHS.
 
 ### Decomposition
+>[!note] Decomposed FD
+>An FD whose RHS has only one attribute
+
 A relation not in BCNF should be decomposed so as to achieve BCNF
 - Have superkey on the LHS
+---
+
+>[!example] Checking for BCNF
+>>R(A, B, C), and A → B, B → A, B → C, keys = {A, B}
+>
+>1. Compute the closure of each subset.
+>2. From each closure, remove the *trivial* attributes
+>3. Derive non-trivial and decomposed FDs from each closure
+>4. For each of the decomposed FD, check that the LHS is a *superkey*
+>
+>R satisfies BCNF
+
+>[!example] Non-BCNF
+>>R(A, B, C), and A → B, B → C, key = A
+>
+>1. B → C is a non-trivial and decomposed FD
+>2. The LHS of B → C is not a superkey
+>
+>R does not satisfy BCNF
+
+Suppose $B$ depends on a non-prime attribute $C$. $C$ is a non-superkey. Since $C$ is not a superkey, the same $C$ may appear multiple times in the table. This leads to redundancy.
+
+![[Screenshot 2023-11-24 at 1.39.34 PM.png|400]]
+
+---
+
+### Checking for BCNF
+
+```
+Compute closure of each attribute subset
+Derive the keys of R (using closures)
+Derive all non-trivial and decomposed FDs on R
+Check the non-trivial and decomposed FDs to see if they satisfy the requirement
+
+All satisfy
+	R is in BCNF
+Not in BCNF
+```
+
+In the algorithm above, we are need to find the closure of every possible subset of attributes in $R$.
+
+Suppose $R$ is not in BCNF, then there is a non-trivial decomposed FD $A$ → $B$ such that $A$ is not a superkey.
+
+1. The closure of $A$ will contain $B$. Then, the closure of $A$ will contain *more* attributes than the trivial closure attributes.
+2. The closure of $A$ will not contain *all* attributes of $R$ since it is not a superkey.
+
+Therefore, if there is a violation of BCNF, there exists a closure on an attribute $A$ such that there is *more but not all* attributes.
+
+![[Screenshot 2023-11-21 at 12.28.11 PM.png | -center|500]]
 
 **Decomposition may forgo the preservation of all functional dependencies**
 >[!caution]
@@ -488,6 +540,14 @@ A relation not in BCNF should be decomposed so as to achieve BCNF
 Decomposition of $R$ into two relations
 - The FD ($R1 \cap R2 → R1 - R2$) is in $F^+$ or
 - the FD ($R1 \cap R2 → R2 - R1$) is in $F^+$
+
+### BCNF guarantees lossless join
+Suppose we decomposed $R$ into $R_1$ and $R_2$ such that:
+- $R_1$ contains all attributes in the closure of $X$
+- $R_2$ contains all attributes in $X$ as well as attributes not in the closure of $X$
+
+Then, $X$ is the set of common attributes between $R_1$ and $R_2 \implies$ $X$ is a superkey of $R_1$
+
 
 ---
 
@@ -548,7 +608,6 @@ Given a set of dependencies $F$ on $R$, the *projection* of $F$ on $R_i$, denote
 The projection of $F$ on each relation schema $R_i$ in the decomposition $D$ is the set of functional dependencies in $F^+$ such that all their LHS and RHS attributes are in $R_i$
 
 A decomposition $D$ of $R$ is ==dependency-preserving== with respect to $F$ if the union of the projections of $F$ on each $R_i$ in $D$ is equivalent to $F$
-
 
 >[!note]
 >It is always possible to find a dependency-preserving decomposition $D$ with respect to $F$ such that each relation in $R_i$ in $D$ is in 3NF.
@@ -665,6 +724,24 @@ while relation schema Q in D is not in BCNF {
 }
 ```
 
+Essentially, we are finding a subset $X$ of attributes in $R$ that violates BCNF.
+Then, we decompose into two tables $R_1$ and $R_2$ such that:
+1. $R_1$ contains all attributes in $\{X\}^+$
+2. $R_2$ contains all attributes in $X$ as well as attributes not in $\{X\}^+$
+
+Then, further decompose if necessary.
+
+>[!example]
+>Suppose we have the relation
+>>Person(Name, <u>NRIC, phoneNumber</u>, HomeAddress)
+> $FD$ : NRIC → Name, HomeAddress
+>Closure of NRIC has more but not all
+>$\{NRIC\}^+$ = { Name, NRIC, HomeAddress }
+>
+>Decompose into two tables $R_1$ and $R_2$
+>1. $R_1$ contains all the attributes in the closure of NRIC → $R_1$(Name, NRIC, HomeAddr)
+>2. $R_2$ contains all the attributes in $X$ as well as attributes not in closure of NRIC → $R_2$(NRIC, PhoneNumber)
+
 >[!example]
 >Suppose we have the universal relation
 >>CUST_TABLE(<u>custNo, tableNo, date</u>, waiterNo, billAmount)
@@ -678,6 +755,20 @@ while relation schema Q in D is not in BCNF {
 >2. Create a relation $X \cup Y$
 >
 >Decomposition loses FD1 but preserves *non-additive decomposition*
+
+#### Further decomposition
+Suppose we have $R$ that is not in BCNF and we decomposed into $R_1$ and $R_2$, how do we determine what FDs are on $R_2$?
+
+- [[Functional Dependencies#Dependency preservation property| Functional dependency preservation]]
+
+1. Derive the closures on $R$
+2. *Project* them onto $R_2$
+
+- Given the set of attributes in $R_2$, find the subsets of $R_2$
+- Derive the closures of these attribute subsets on $R$
+- *Project* these closures onto $R_2$ by removing irrelevant attributes on both LHS and RHS
+- Find if there are any FDs in the set of projection that violates BCNF
+
 
 ---
 
