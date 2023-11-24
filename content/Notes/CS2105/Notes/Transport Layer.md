@@ -82,6 +82,9 @@ UDP adds very little service on top of IP:
 
 Format of UDP header
 
+**Length** includes the header size (32 bits) and the payload.
+
+
 | 16 bits            | 16 bits                 |
 | ------------------ | ----------------------- |
 | source port number | destination port number |

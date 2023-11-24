@@ -609,6 +609,15 @@ The projection of $F$ on each relation schema $R_i$ in the decomposition $D$ is 
 
 A decomposition $D$ of $R$ is ==dependency-preserving== with respect to $F$ if the union of the projections of $F$ on each $R_i$ in $D$ is equivalent to $F$
 
+---
+
+Let $S$ be the given set of FDs on the original table.
+Let $S’$ be the set of FDs on the decomposed table.
+
+the decomposition preserves all FDs $\iff$ $S’$ is [[Functional Dependencies#Equivalence sets of FDs|equivalent]] to $S$
+
+
+
 >[!note]
 >It is always possible to find a dependency-preserving decomposition $D$ with respect to $F$ such that each relation in $R_i$ in $D$ is in 3NF.
 
