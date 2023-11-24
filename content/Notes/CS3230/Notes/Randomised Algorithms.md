@@ -194,10 +194,102 @@ We know the probability of each iteration. The expected number of trials to find
 ---
 # Universal Hashing
 
-==Hash function== $h : U \rightarrow \{0, 1, … , n-1 \}$
+==Hash function== $h : U \rightarrow \{0, 1, … , n-1 \}$, map a universe of elements $U$ into the hash values
 
 ==Hashing== : Create an array $H$ of size $n$. When processing element $u$, access array element $H[h(u)]$.
 
 ==Collision== : When $h(u) = h(v)$ but $u \neq v$
 - A collision is expected after $\Theta(\sqrt{n})$ random insertions
 - *Separate chaining* : $H[i]$ stores linked list of elements $u$ with $h(u) = i$
+
+Now, with separate chaining, the time required for `Lookup` is proportional to the time to compute $H(u)$, and the length of linked list at $h(u)$ inside the hash table.
+
+---
+
+**Goal** : Spread out the elements being added, so that no entry of $H$ contains too many elements
+
+## Choosing a good hash function
+Suppose we want to map each element $u \in U$ to a smaller range of hash values.
+
+**Common approach**: $u \mod p$, for a prime number $p$ that is *approximately* equal to $n$.
+
+---
+## Randomization
+For every element $u \in U$, we select a value $h(u)$ uniformly at random from the set $\{0, 1, … , n - 1\}$, independently of all previous choices.
+
+### Probability of collision
+**The probability of hash collision $h(u) = h(v)$ is $1/n$**
+1. There are $n^2$ possible choices for $h(u), h(v)$ pair
+2. $n$ of the choices result in collision
+
+However, with `delete` and `lookup` operations, there is no way to retrieve the hash values unless we store it, which leads to the same problem again.
+
+---
+## Universal classes of hash function
+- Choose a hash function at random from a *carefully selected* class of functions, $H$
+- For each function $h \in H$, it maps $U$ into $n$ values
+
+1. Function $h$ in $H$ needs to satisfy the [[Randomised Algorithms#Probability of collision|Probability of collision]] to be considered **universal**
+2. For each $h \in H$, $h$ can be compactly represented and we can compute $h(u)$ efficiently
+
+### Probability of collision with universal class of hash function
+- Let $H$ be a universal class of hash function that maps $U$ to a set of size $n$.
+- Let $S$ be an arbitrary set $\subseteq U$ of size at most $n$.
+- Let $u$ be any element in $U$
+
+**Define the random variable**
+Let $X$ be the random variable equal to the number of elements $s \in S$ for which there is a collision $h(s) = h(u)$
+
+For an element $s$, let $X_s$ be the random variable that is **equal to 1** if $h(s) = h(u)$ and 0 otherwise.
+
+$$
+E(X_s) = Pr(X_s) \leq \frac{1}{n}
+$$
+
+**Apply linearity of expectation**
+$$
+E(X) = \sum_{s \in S} E(X_s) \leq |S| \cdot \frac{1}{n} \leq 1
+$$
+
+---
+
+# Chernoff bounds
+We have a sense that the value of a random variable ought to be *near* its expectation wth reasonably high probability. To what extent is this true?
+
+Random variables $X$ and $Y$ are independent if
+- for any values $i$ and $j$, $Pr(X = i)$ and $Pr(Y = j)$ are independent.
+
+Let $X_i$ take the value 1 with probability $p_i$ and the value $0$ otherwise.
+
+Consider $X$ to be the sum of independent random variables
+$$
+X = X_1 + X_2 + ... + X_n
+$$
+
+**By linearity of expectation**,
+$$
+E(X) = \sum_{n=1}^{n} p_i
+$$
+
+The sum will have value close to its expectation with high probability. There are bounds on probability that $X$ deviates *above* $E(X)$ and bounds on probability that $X$ deviates *below* $E(X)$
+
+---
+
+## Deviating above
+Assume $\mu \geq E(X)$, then, for *any* $\delta \gt 0$, the probability that $X$ exceeds $(1 + \delta)\mu$ and therefore, $E(X)$,
+$$
+Pr(X \gt (1+\delta)\mu) \lt \Big( \frac{e^{\delta}}{(1+\delta)^{(1+\delta)}}\Big)^{\mu}
+$$
+
+>[!note]
+>$$
+>f(x) = e^{tx}
+>$$
+>is monotone in $x$
+
+$$
+Pr(X \gt (1+\delta)\mu) = 
+$$
+
+
+

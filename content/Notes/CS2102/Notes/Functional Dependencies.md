@@ -419,8 +419,9 @@ The non-prime attributes are *hours, ename, pname and plocation*. Since ename, p
 Decompose to *achieve full functional dependency* on primary key in each relation, and **preserve all FDs**.
 
 ### 3NF
->[!info] Transitive dependency
->**Transitive functional dependency** : a FD $X → Z$ that can be derived from $X → Y$ and $Y → Z$
+3NF is not as strict as BCNF and has *small* redundancy (larger than BCNF).
+- Preserves lossless join property
+- ==Preserves all FDs==
 
 >[!note]
 >A relation is in 3NF if:
@@ -433,6 +434,28 @@ Decompose to *achieve full functional dependency* on primary key in each relatio
 
 The transitivity is only a problem if $Y$ is not a candidate key. If $Y$ is a candidate key, it is not a violation of 3NF.
 
+>[!info] Transitive dependency
+>**Transitive functional dependency** : a FD $X → Z$ that can be derived from $X → Y$ and $Y → Z$
+
+#### 3NF check
+```
+1. Derive the closure for each attribute subset
+2. Derive the keys of R
+3. For each FD,
+	1. Check LHS is a superkey OR
+	2. Each attribute on the RHS is a prime attribute
+4. If all FDs satisfy the condition
+	1. R is in 3NF
+```
+
+>[!example]
+>>R(A, B, C, D) and {AB → C, C → D, D → A}
+>1. From the closure of each attribute subset, keys = {AB, BC, BD}
+>2. For each FD, check if LHS is a superkey OR each attribute on the RHS is a prime attribute
+>
+>All the FDs have prime attribute on the RHS → R is in 3NF
+
+---
 ## Successive normalisation
 Given a universal relation, decompose into different relations based on the normal forms. Structurally, it is a tree and the set of relations at the leaf nodes will be the schema at the highest NF.
 
@@ -616,8 +639,6 @@ Let $S’$ be the set of FDs on the decomposed table.
 
 the decomposition preserves all FDs $\iff$ $S’$ is [[Functional Dependencies#Equivalence sets of FDs|equivalent]] to $S$
 
-
-
 >[!note]
 >It is always possible to find a dependency-preserving decomposition $D$ with respect to $F$ such that each relation in $R_i$ in $D$ is in 3NF.
 
@@ -702,6 +723,14 @@ R_i is a projection of R_j
 	R_i is redundant -> remove
 
 ```
+
+In other words, what the algorithm is doing is to:
+1. Find a min cover of the FDs
+2. Combine FDs whose LHS are the same
+3. For each FD, construct a table that contains all attributes in the FD
+4. Check if *any* of the tables contain a key for $R$, if not, create a table that contains a key for $R$.
+5. Remove redundant tables.
+
 >[!example]
 >Suppose we have the universal relation
 >> $U$(Ssn, Pno, Esal, Ephone, Dno, Pname, Plocation)
@@ -720,6 +749,32 @@ R_i is a projection of R_j
 >3. Generate a relation corresponding to the key of $U$
 >	1. $R_3$(Ssn, Pno)
 
+Generating a table that contains the key of $R$ ensures that it satisfies the *lossless join decomposition*.
+
+>[!example] Without the table that contains the key of $R$…
+>>R(A, B, C, D), {A → B, C → D}
+>**Minimal basis** : A→B, C→D
+>**Key**: {AC}
+>
+>- This gives us: $R_1$(A, B) and $R_2$(C, D)
+>- $R_1$ and $R_2$ cannot be used to reconstruct $R$
+>- Add $R_3$(A, C)
+
+Then, we need to remove redundant tables. $R_1$ is redundant if *all* of its attributes are contained in another table $R_2$
+
+>[!example]
+>>R(A, B, C, D, E)
+>>**Minimal basis** : { A→B, A→C, C→D, C→E, E→C}
+>>**Key** : {A}
+>
+>1. For each FD, construct a table that contains all attributes in the FD.
+>>>$R_1$(A, B, C), $R_2$(C, D, E), $R_3$(C, E)
+>2. Since $A$ is in $R_1$, we do not need to create a new table for keys
+>3. Since *all* attributes of $R_3$ is in $R_2$, $R_3$ is redundant and we can remove $R_3$
+>4. Final decomposition is $R_1, R_2$
+
+
+---
 ### BCNF
 Given a *universal relation* $R$ and a set of functional dependencies $F$ on the attributes of $R$
 
