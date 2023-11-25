@@ -1,7 +1,10 @@
 ---
 title: Hello 👋
 ---
-
+``` toggl
+summary
+past 8 days
+```
 # Notes
 Modules taken in AY2324 Semester 1
 
