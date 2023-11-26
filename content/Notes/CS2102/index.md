@@ -17,7 +17,7 @@ tags:
 | 6            | 18 Sep | [[Theory of Query Languages]]      | SQL Part 3                | Project #2    | Assignment #1 |
 | Recess Week  | 25 Sep |                             |                           |               |               |
 | 7            | 2 Oct  | ==Midterm (Lecture slot)==      | Midterm answers           |               |               |
-| 8            | 9 Oct  | Stored Procedures           | Theory (Algebra/ Calc)    |               |               |
+| 8            | 9 Oct  | [[Programming with SQL]]          | Theory (Algebra/ Calc)    |               |               |
 | 9            | 16 Oct | Triggers                    | Stored Procedure          | Project #3    |               |
 | 10           | 23 Oct | [[Functional Dependencies]]     | Triggers                  |               |               |
 | 11           | 30 Oct | Normalization               | Functional Dependencies   | Assignment #2 |               |
