@@ -5,6 +5,8 @@
 
 - Considers relationships between a *light source*, a *single surface point*, and a *view point*
 - No interaction with other objects
+- Cannot simulate indirect light (bounced light)
+- Cannot simulate shadows (obstruction between light and another surface)
 
 ## Global illumination
 - Considers all light sources and surfaces
@@ -31,6 +33,8 @@ There are **3** terms in the Phong illumination equation: *ambient*, *diffuse* a
 ### Ambient light
 >[!info] Ambient light
 >Ambient light is *universal*. Every surface receives the same color and intensity of light.
+>
+>- Does not care about where light is positioned relative to the surface
 
 Ambient light is used to produce a *uniform lighting* effect on every point on **every surface** in the scene. 
 
@@ -71,6 +75,13 @@ $$
 ### Diffuse
 >[!info] The diffuse term
 >The diffuse term gives color to the surface point according to the *light position* and the *surface normal*
+>
+>- Does not care about where the camera is
+>- Takes into account where the light source is relative to the surface
+>- Ray is assumed to deflect of surface equally in all directions
+>	- Camera position is irrelevant
+>	- Full intensity when light ray is perpendicular to the surface
+>	- 0 intensity when light ray is parallel to the surface
 
 >[!note] Surface normal
 > **==triangle==** 
@@ -96,6 +107,11 @@ $$
 
 >[!caution] 
 >Normalize every directional vector ($L$ and $N$)
+>- Do not translate normals!
+>- Rotation is okay
+>- Uniform scaling — okay
+>- Non-uniform scaling — not okay
+
 ---
 #### Point light source and attenuation
 Assume that the light is a point at position $p$ and is emitting light at every direction.
@@ -116,6 +132,9 @@ Its color and intensity is specified by vector $I_p$
 ### Specular
 >[!info] The specular term
 >The specular term adds *highlights* to **shiny** surface
+>
+>- Ray deflected at an *inverse angle*
+>- Camera position matters
 
 Assume light source is a point $\implies$ ==shininess== is *inversely proportional* to the size of the highlight *(ie, more shiny, smaller highlight)*
 
@@ -124,7 +143,7 @@ Highlight is **view dependent**. The highlight on the object will *move on the o
 Define 4 **unit** vectors
 1. $N$ — surface normal
 2. $L$ — *unit vector* from the surface point **to** the light source
-3. $R$ — reflection vector
+3. $R$ — *unit reflection vector*
 4. $V$ — *unit vector* from the surface point **to** the viewer
 
 We obtain the reflection vector $R$, with $N$ and $L$
@@ -345,4 +364,7 @@ b. Phong
 - Highlights are produced more faithfully
 - Not supported in OpenGL
 - Can be done by reprogramming the rendering pipeline using shaders
+
+As Phong shading is done *per-fragment* whereas Gouraud shading is done *per-vertex*, Phong shading is computationally more expensive as there are more fragments than vertices in a polygon.
+
 

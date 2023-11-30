@@ -16,9 +16,12 @@ For polygon models, texture coordinates are specified **only** at the vertices.
 
 There are *two parts* to texture mapping.
 
-**S-mapping** : Texture map is first projected onto an “easy” intermediate surface (ie plane, cylinder, sphere, cube)
+1. **S-mapping** : Texture map is first projected onto an “easy” *intermediate surface* (ie plane, cylinder, sphere, cube)
+	- $T(s, t) \rightarrow T'(x_i, y_i, z_i)$
+2. **O-mapping** : 3D intermediate surface is mapped onto the object surface
+	- $T’(x_i, y_i, z_i) \rightarrow O(x_w, y_w, z_w)$
 
-**O-mapping** : 3D intermediate surface is mapped onto the object surface
+![texmap|300](Screenshot%202023-11-30%20at%206.50.29%20PM.png)
 
 ![[omappin.png]]
 
@@ -34,6 +37,7 @@ At each fragment, the interpolated texture coordinates will be transformed into 
 
 **Clamp** : clamped to [0, 1]
 **Repeat** : Ignored integer part of texture coordinates
+![texcoordwrapping|500](Screenshot%202023-11-30%20at%206.52.30%20PM.png)
 
 ---
 
@@ -84,6 +88,10 @@ Image of the environment can be stored in a *cube map* and has 6 separate images
 
 ## Bump mapping
 Simulates small complex geometric features on surfaces without really the need to model them. A height field is used to perturb surface normals, and the perturbed normals are used in light reflection computation.
+
+![bumpmapping|400](Screenshot%202023-11-30%20at%206.59.17%20PM.png)
+
+A height field is used to *perturb* surface normals, and the **perturbed normals** are used in light reflection computation.
 
 ## Billboarding
 Image based rendering where the static image of an object rotates with the view direction.

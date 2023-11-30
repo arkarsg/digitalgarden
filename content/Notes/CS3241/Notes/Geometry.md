@@ -291,6 +291,11 @@ $$
 $$
 \text{S} = \text{S}^{-1}(s_x, s_y, s_z) = \text{S}(\frac{1}{s_x}, \frac{1}{s_y}, \frac{1}{s_z})
 $$
+
+>[!caution] 
+>$$
+>(ABC)^{-1} = C^{-1} B^{-1} A^{-1}
+>$$
 ---
 # Concatenation
 
