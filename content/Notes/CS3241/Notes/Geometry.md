@@ -77,6 +77,12 @@ $$
 
 >[!caution]
 >A coordinate system is insufficient to represent points.
+>
+>A coordinate system alone is insufficient to represent points because points in space not only have spatial coordinates but also possess a notion of position or location. A coordinate system provides a framework for specifying the spatial coordinates of points, but it does not capture their individual positions or relationships to other points.
+>
+>To fully represent a point in space, you need both the coordinates within a coordinate system and a reference or origin point. This combination is known as a frame or frame of reference. A frame includes the coordinate system and an additional reference point that provides the position or location of the point within that coordinate system.
+>
+>By incorporating a reference point, a frame allows for a more complete representation of points in space, considering both their spatial coordinates and their positions relative to the frame's origin. This information is essential for accurately describing and manipulating points in geometric calculations and transformations.
 
 If we work in an *affine space*, we can add ==the origin==, to the basis vectors to form a frame. Therefore, a ==frame== has a *coordinate system* and a *point*.
 
@@ -85,11 +91,26 @@ $$
 (P_0, v_1, v_2, v_3)
 $$
 
-And within this frame, every *vector* can be written as $v = \alpha_1 v_1 + \alpha_2 v_2 + ... + \alpha_n v_n$, and every *point* can be written as $P = P_0 + \beta_1 v_1 + \beta_2 v_2 + ... + \beta_n v_n$
+And within this frame,
+- every *vector* can be written as $v = \alpha_1 v_1 + \alpha_2 v_2 + ... + \alpha_n v_n$, and
+- every *point* can be written as $P = P_0 + \beta_1 v_1 + \beta_2 v_2 + ... + \beta_n v_n$
 
 Note that these can be rewritten as a product of the basis with the origin and the transpose of the representation.
 
 This is the *four-dimensional homogeneous coordinate* representation for 3D space.
+
+>[!summary]
+>The key idea in an affine space is that it captures the concept of relative positions and movements without specifying an absolute origin. This makes it suitable for describing and working with geometric properties and transformations that are independent of a specific coordinate system or reference point.
+
+Note that we have the same representation
+- For point $\text{p} = \begin{bmatrix}\beta_1 & \beta_2 & \beta_3 \end{bmatrix} ^{T}$
+- For vector $\text{v} = \begin{bmatrix}\alpha_1 & \alpha_2 & \alpha_3 \end{bmatrix} ^{T}$
+
+Since a vector has no position, we can rewrite as follows:
+- For point $\text{P} = \begin{bmatrix}v_1 & v_2 & v_3 & P_0 \end{bmatrix} \begin{bmatrix}\beta_1 & \beta_2 & \beta_3 & 1 \end{bmatrix} ^{T}$
+-  For vector $\text{v} = \begin{bmatrix}v_1 & v_2 & v_3 & P_0 \end{bmatrix} \begin{bmatrix}\alpha_1 & \alpha_2 & \alpha_3 & 0 \end{bmatrix} ^{T}$
+
+Which leads us to *homogeneous coordinates*
 
 ---
 
@@ -190,7 +211,7 @@ Consider rotation about the origin by $\theta$ degrees. The new points can the $
 >[!caution]
 >Rotation in 2D space is actually a rotation in 3D space with $z$ pointing towards the observer.
 
-![[rotation.png| -center | -m]]
+![[rotation.png|500]]
 
 Rotation about z-axis in three dimensions leaves all points with the same $z$. Therefore, it is equivalent to rotation in 2 dimensions in planes of constant $z$.
 

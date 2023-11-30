@@ -11,9 +11,9 @@ To render a primitive using OpenGL, the primitive goes through the following mai
 ---
 
 # Modeling
-Modeling provides a *set of vertices* that specifies geometric objects.
+Modelling provides a *set of vertices* that specifies geometric objects.
 
-- [i] Examples of attributes at a vertex
+- Examples of attributes at a vertex
 	1. Color
 	2. Material
 	3. Vertex normal
@@ -27,15 +27,15 @@ May perform scene processing to reduce amount of geometric data passed to render
 
 ==Model-View== transformation of each vertex to *camera space*, which transforms the vertex normal too.
 
-- Vertex colors are assigned here using lighting computation.
-- Texture coordinates are also computed here
+- Vertex colors are assigned here using [lighting computation](Illumination.md).
+- [Texture](Texture%20Mapping.md) coordinates are also computed here
 - Performs multiplication with *projection* matrix to clip space
 
 ---
 
 # Primitive Assembly
 
-![[spacepipeline.png| -s | -centered]]
+![[spacepipeline.png|300]]
 
 Some operations occur at this stage:
 - Vertex data is collected into complete primitives
@@ -67,7 +67,7 @@ Attribute values at fragments are computed by interpolating attribute values ass
 
 The result of a bilinear interpolation on a quadrilateral may not be invariant to rotation and transformation. But it is stable for ==triangles==.
 
-![[bilinearinterpolation.png| -center | -m]]
+![[bilinearinterpolation.png|500]]
 
 ### Color interpolation
 To give an appearance of smoothness, assign each vertices to different colors. Then, in each polygon, there will be a color interpolation to give an appearance of smoothness.
@@ -77,7 +77,7 @@ To give an appearance of smoothness, assign each vertices to different colors. T
 >
 >The combination of *lighting computation* and *color interpolation* is also known as ==Gouraud shading==
 
-![[gouradshading.png| -center | -m]]
+![[gouradshading.png|500]]
 
 ## Scan conversion of line segments
 
@@ -110,7 +110,7 @@ $$
 
 Then, we have
 
->[!aside | right +++++]
+>[!note]
 >The change in $x$ is not $1$. It is in change in the end point
 
 $$
@@ -122,7 +122,12 @@ $$
 - If $p_k > 0$, plot upper pixel
 
 Note that this is incrementally computed from $p_0$. In other words, $p_{k+1}$ is computed from $p_k$.
+![IncrementalForm|300](Screenshot%202023-11-30%20at%201.38.24%20PM.png)
 
+- If $p_k < 0, \enspace p_{k+1} = p_k + 2\Delta{y}$
+- If $p_k > 0, \enspace p_{k+1} = p_k + 2\Delta{y} - 2\Delta{x}$
+
+where $p_0 = 2\Delta{y} - \Delta{x}$
 
 ---
 
@@ -143,6 +148,8 @@ Each generated fragment is processed to determine the color of the corresponding
 >[!caution]
 >Even though the fragment can be assigned by the rasterizer, the color may still change with texture mapping.
 
+- Texture access using interpolated texture coordinates (access texture map using texture coordinates)
+- Texture application — combine fragment color of the primitive and texture color
 ---
 
 # Per-fragment operations
@@ -199,9 +206,10 @@ Consider line segments in that lie on different parts of the outcode
 2. **`outcode(A) = 0, outcode(B) != 0` → one point inside and one point outside**
 	- Location of `1` in `B` determines which edge to intersect with. If `B` has 2 `1`s → two intersections
 3. **`outcode(A) & outcode(B) != 0` → both points lie on the outside**
+	- `BITWISE AND` is not 0
 	- Both outcodes have a `1` in the same bit location → line is outside of corresponding side of clipping window
 	- Reject line segment
-4. **`outcode(A) != 0 & outcode(B) != 0 & (outcode(A) & outcode(B) = 0)`**
+5. **`outcode(A) != 0 & outcode(B) != 0 & (outcode(A) & outcode(B) = 0)`**
 	- Shorten line segment by intersection with one side of the window
 	- Compute outcode of intersection (new endpoint of shortened line segment)
 	- Re-execute algorithm

@@ -10,7 +10,7 @@
 
 Standard projections project onto a plane. Such projections preserve lines but *not necessarily angles*. For applications such as ==map construction==, non-planar projection surfaces are needed.
 
-![[projection.png| -m | -center]]
+![[projection.png|500]]
 
 >[!aside | right +++++]
 >Suppose you are projecting an evenly spaced column of pillars. If perspective projection is used, then the spaces between the pillars will not look the same.
@@ -41,14 +41,23 @@ There are 2 aspects that are implemented in the ==pipeline==.
 1. **Positioning the camera** : Setting the model-view matrix
 2. **Selecting a lens** : Setting the projection matrix, perspective and the view volume 
 
-![[coordinatetransformation.png| -s | -center]]
+![[coordinatetransformation.png|500]]
 
 ### Object space
->[!aside | right +++++]
+>[!note]
 >When we assign a vertex with `glVertex`, it is by default in their object space. But sometimes, the object space can also be the world space.
 
 
 - Each object model has its own local coordinate frame. The coordinates of the vertices and vertex normals are specified with respect to the local coordinate frame.
+
+>[!example]
+>Suppose you want to create a unit cube. The coordinates will be:
+>```
+>( 0.5,  0.5, 0.5)
+>(-0.5,  0.5, 0.5)
+>( 0.5, -0.5, 0.5)
+>(-0.5, -0.5, 0.5)
+>```
 
 ### World space
 - A *common* coordinate frame for *all* objects to form the scene to be rendered.
@@ -79,7 +88,7 @@ Position the camera at the required location and orientation with respect to the
 >[!aside | right +++++]
 >`(up_x, up_y, up_z)` is a direction, not a point
 
-![[cameraspace.png| -m | -center]]
+![[cameraspace.png|500]]
 
 The `eye` and `at` are in the world space. The `eye` specifies the point at which the camera exists and `at` specifies what the “look at” point is. However, the orientation of the camera is ==not constrained==. Therefore, we have to specify a direction in the world space that the camera should follow — `up`.
 
@@ -100,7 +109,7 @@ All points in the *world frame* are expressed with respect to *camera frame*.
 	- $T$ moves the camera position back to the *world origin*
 	- $R$ rotates the axes of the camera frame to coincide with the corresponding axes of the world frame
 
-![[vertextransformationcameratoworld.png| -s | -center]]
+![[vertextransformationcameratoworld.png|500]]
 
 ### Deriving the view transformation matrix
 Suppose the camera has been moved to $e_x, e_y, e_z$, and its $x_c, y_c, z_c$ are the unit vectors $u, v, n$ respectively, then:
@@ -120,7 +129,7 @@ M_{view} =
 \begin{bmatrix}
 	1 & 0 & 0 & -e_x \\
 	0 & 1 & 0 & -e_y \\
-	0 & 0 & 0 & -e_z \\
+	0 & 0 & 1 & -e_z \\
 	0 & 0 & 0 & 1
 \end{bmatrix}
 $$
@@ -157,7 +166,7 @@ The function then generates a matrix that linearly maps the *view volume* to the
 - (left, bottom, -near) is mapped to (-1, -1, -1)
 - (right, top, -far) is mapped to (1, 1, 1)
 
-![[viewporttocdn.png| -m | -center]]
+![[viewporttocdn.png|500]]
 
 >[!note] Algorithm to find the mapping
 >1. Translate the view volume to origin
@@ -172,7 +181,7 @@ $$
 M_{ortho} = S\Big( \frac{2}{{right} - {left}}, \frac{2}{{top} - {bottom}}, \frac{2}{{near} - {far}} \Big) \cdot T \Big( \frac{-({right} - {left})}{2}, \frac{-( {top} - {bottom} ) }{2}, \frac{ {far} + {near}}{2} \Big)
 $$
 
-![[orthotransformation.png| -m | -center]]
+![[orthotransformation.png|500]]
 
 ---
 
@@ -182,7 +191,7 @@ The canonical view volume is then mapped to the viewport.
 
 $z_{win}$ must fall between 0 and 1
 
-![[ndctoviewport.png| -m | -center]]
+![[ndctoviewport.png|500]]
 
 ---
 
@@ -190,7 +199,7 @@ $z_{win}$ must fall between 0 and 1
 
 In perspective projection, the *center of projection* is at the ==origin== and projection plane lies on $z = d, d < 0$
 
-![[perspectivedivision.png| -m | -center]]
+![[perspectivedivision.png|500]]
 
 Perspective projection is specified by defining a viewing volume in the camera frame using:
 >> `glFrustum(left, right, bottom, top, near, far)`
@@ -202,7 +211,7 @@ The `glFrustum` function then generates a matrix that maps the ==view frustum== 
 ![[glfrustumtondc.png| -m | -center]]
 ### Perspective projection matrix
 
-![[perspectivetransformation.png| -m | -center]]
+![[perspectivetransformation.png|500]]
 
 ---
 ### Perspective projection using field of view
@@ -211,5 +220,13 @@ The `glFrustum` function then generates a matrix that maps the ==view frustum== 
 >> `gluPerspective(fovy, aspect, near, far)`
 
 
+![frustum|500](frustum.png)
 
-![[frustum.png| -s | -center]]
+
+---
+
+# Code examples
+
+![OpenGL Example 1|500](Screenshot%202023-11-30%20at%201.16.02%20PM.png)
+
+![OpenGL Example 2|500](Screenshot%202023-11-30%20at%201.18.31%20PM.png)
