@@ -3,7 +3,7 @@ title: Hello 👋
 ---
 ``` toggl
 summary
-past 10 days
+past 12 days
 ```
 # Notes
 Modules taken in AY2324 Semester 1
@@ -14,7 +14,13 @@ Modules taken in AY2324 Semester 1
 - [[Notes/CS3241/index|Computer Graphics]]
 
 # To-Do
-- [x] Distance vector algorithm
-- [x] CSMA
-- [x] Backoff algorithm
-- [x] Network delay/ jitter questions
+- [ ] Redo tutorials
+	- [x] Tutorial 3
+	- [x] Tutorial 4
+	- [x] Tutorial 5
+	- [ ] Tutorial 6
+	- [ ] Tutorial 7
+	- [ ] Tutorial 8
+	- [ ] Tutorial 9
+- [ ] Revisit Lectures
+- [ ] PYPs

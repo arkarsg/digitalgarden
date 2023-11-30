@@ -115,6 +115,11 @@ Which leads us to *homogeneous coordinates*
 ---
 
 # Homogeneous coordinates
+>[!note] Motivation
+>1. To have different representations to distinguish between *points* and *vectors*
+>2. To do translation using matrix multiplication
+>3. To allow perspective projection using matrix multiplication and perspective division
+
 
 The homogeneous coordinates for a *three dimensional* point $[x \space y \space z]^{T}$ is given as
 $$

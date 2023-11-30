@@ -43,6 +43,9 @@ There are 2 aspects that are implemented in the ==pipeline==.
 
 ![[coordinatetransformation.png|500]]
 
+### Transforming to window space
+When vertices of a primitive are formed to the window space, the 2D area in the window that is covered by the primitive is known, and so the rasterizer can known in which area it should create the fragments.
+
 ### Object space
 >[!note]
 >When we assign a vertex with `glVertex`, it is by default in their object space. But sometimes, the object space can also be the world space.
@@ -90,7 +93,7 @@ Position the camera at the required location and orientation with respect to the
 
 ![[cameraspace.png|500]]
 
-The `eye` and `at` are in the world space. The `eye` specifies the point at which the camera exists and `at` specifies what the “look at” point is. However, the orientation of the camera is ==not constrained==. Therefore, we have to specify a direction in the world space that the camera should follow — `up`.
+The `eye` and `at` are in the world space. The `eye` specifies the point at which the camera exists and `at` specifies what the “look at” point is. However, the orientation (the roll) of the camera is ==not constrained==. Therefore, we have to specify a direction in the world space that the camera should follow — `up`.
 
 The derivation of `n, u, v` implies that we can derive the camera space based on the `up` vector.
 

@@ -296,3 +296,19 @@ This is a *object-space* approach where objects are sorted using a *pair-wise* t
 - Else, discard fragment
 
 ---
+
+# z-fighting
+- Occurs when two or more primitives have similar or identical values in the *z-buffer*
+- Two faces occupy the same space, with neither in front.
+- Affected pixels are rendered with fragments arbitrarily determined by the precision of the *z-buffer*
+- Results in flickering or noisy rasterization
+
+>[!note]
+>This is caused by limited *sub-pixel precision* and floating point and fixed point round-off errors
+
+### Minimising z-fighting
+- **Minimise** the distance between the near and far planes
+- Smaller range of depth values mapped to 0 to 1
+- Able to resolve different *eye-space* z-coordinate values with **higher precision**
+
+---
