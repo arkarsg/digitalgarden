@@ -159,31 +159,26 @@ Therefore, the packet will be forwarded to $R_2$
 >[!caution] Routing
 >Finding a *least cost path* between two vertices in a graph
 
-
-```start-multi-column
-ID: ID_44o1
-Number of Columns: 2
-Largest Column: standard
-Shadow: off
-Border: off
-```
-
 - All routers have the complete knowledge of network topology and link cost
 	- Routers periodically broadcast link costs to each other
-
---- column-end ---
 
 - Routers know physically-connected neighbours and link costs to neighbours
 - Routers exchange *local views* with neighbours and update own *local views* based on neighbour’s views
 
---- end-multi-column
+### Distance vector algorithm
 
 ==Iterative process of computation==
 1. Swap local view with direct neighbours
 2. Update own’s local view
 3. Repeat 1-2 until no more change to local view
 
+- Routers know *physically-connected* neighbours and link costs to neighbours
+- Routers exchange *local views* with neighbours and update own *local views* based on neighbour’s views
+
 ### Optimal substructure of Bellman Ford
+- Let $c(x, y)$ be the cost link between routers $x$ and $y$ that are direct neighbours
+- $d_x(y)$ the cost of the least-cost path from $x$ to $y$.
+
 $$
 d_{x}(y) = \min_{v} \{ c(x,v) + d_v(y) \}
 $$
@@ -205,6 +200,7 @@ After every router has exchanged several rounds of updates with its direct neigh
 
 # Routing information protocol
 ==RIP== implements the DV algorithm using the *hop count* as the cost metric.
+- Insensitive to network congestion
 - It exchanges routing table every 30 seconds over UDP port 520
 - *Self-repair* : if no update from a neighbour router for 3 minutes, assume neighbour has failed.
 
@@ -277,6 +273,8 @@ ICMP messages are carried in IP datagrams.
 | 3    | 3    | dest port unreachable |    
 | 11   | 0    | TTL expired           |    
 | 12   | 0    | bad IP header         |    
+
+For example, when **TTL** is 0, a packet is discarded and an ICMP error message is sent to the datagram’s *source* address.
 
 ### `ping` and `traceroute`
 - The command `ping` sees if a remote host will respond to us (ie whether we have a connection)

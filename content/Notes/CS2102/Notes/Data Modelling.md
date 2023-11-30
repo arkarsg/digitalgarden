@@ -94,7 +94,7 @@ Value sets are similar to data types in most programming languages.
 
 ---
 
->[!note] In ER diagrams
+>[!summary] In ER diagrams
 > ==An entity type== is displayed in a rectangular box.
 > 
 > ==Attributes== are displayed in ovals connected to its entity type, key attribute underlined and components of a composite attribute are connected to the oval representing the composite attribute.

@@ -179,11 +179,12 @@ If *collision detected*, abort transmission. How to *retransmit* after a random 
 >- wait $K$ time units before retransmission
 >
 >After 2nd collision:
->- Choose $K$ from {0, 1, 2, 2^2 - 1}
+>- Choose $K$ from $\{0, 1, 2, 2^2 - 1\}$
 >- Wait $K$ time units before retransmission
 >  
 > After $m$-th collision
 > - Choose $K$ at random from $\{0, 1, … , 2^{m} - 1\}$
+> - Wait $K$ time units before retransmission
 
 **Property** : Retransmission attempts to estimate current load
 - More collision implies heavier load

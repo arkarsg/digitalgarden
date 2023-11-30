@@ -69,20 +69,24 @@ Each spatial variable for points on the curve is expressed in terms of an indepe
 
 For the case of curves in 3D space,
 
-$$ p(u) = \begin{bmatrix}
+$$
+p(u) = \begin{bmatrix}
 x(u) \\
 y(u) \\
 z(u)
-\end{bmatrix} $$
+\end{bmatrix}
+$$
 Then, we can also find the *tangent vector* (velocity) at a point
 
 ### Surfaces in 3D
 Now requires 2 parameters which forms a rectangular domain
-$$ p(u, v) = \begin{bmatrix}
+$$
+p(u, v) = \begin{bmatrix}
 x(u, v) \\
 y(u, v) \\
 z(u, v)
-\end{bmatrix} $$
+\end{bmatrix}
+$$
 To find the normal vector at a point on the curve, find the cross product of the derivative![[curvesandsurfaces-parametricform.png| -s | -center]]
 
 ### Parametric polynomial curves
@@ -178,12 +182,14 @@ $$
 
 ==Interpolation geometry matrix== is the inverse of A.
 
-$$M_I = A^{-1} = \begin{bmatrix}
+$$
+M_I = A^{-1} = \begin{bmatrix}
 1 && 0 && 0 && 0 \\
 -5.5 && 9 && -4.5 && 1 \\
 9 &&  -22.5 && 18 && -4.5 \\
 -4.5 && 13.5 && -13.5 && 4.5 \\
-\end{bmatrix}$$
+\end{bmatrix}
+$$
 
 $M_I$ is the same for any 4 control points.
 
@@ -257,12 +263,14 @@ p_3
 $$
 
 $M_B$ is the Bezier geometry matrix:
-$$M_B= \begin{bmatrix}
+$$
+M_B= \begin{bmatrix}
 1 && 0 && 0 && 0 \\
 -3 && 3 && 0 && 0 \\
 3 &&  -6 && 3 && 0 \\
 -1 && 3 && -3 && 1 \\
-\end{bmatrix}$$
+\end{bmatrix}
+$$
 
 ## Blending functions
 
@@ -274,11 +282,11 @@ These are known as *Bernstein polynomial* of degree 3 which have the following p
 
 $p(u)$ expressed as a weighted sum is a *convex sum*.
 
-![[curves-convexsum.png| -m | -center]]
+![[curves-convexsum.png|400]]
 
 Consequently, $p(u)$ must lie in the *convex hull* of the four control points
 
-![[curves-convexhull.png| -xs | -center]]
+![[curves-convexhull.png|200]]
 
 ---
 
@@ -296,7 +304,7 @@ Given the representation of the curve segment, how to draw the curve?
 
 - Evaluate $p(u)$ at a sequence of $u$ values and join the points using straight line segments (polyline)
 
-![[Screenshot 2023-11-18 at 6.12.44 PM.png | -s | -center]]
+![[Screenshot 2023-11-18 at 6.12.44 PM.png|300]]
 
 >[!caution]
 >Note that in areas with high curvature, it is not represented accurately, such as $u_2, u_3$. Therefore, we need an adaptive way of choosing the values of $u$.
@@ -307,23 +315,23 @@ Given the representation of the curve segment, how to draw the curve?
 $p(u)$ is computed by a sequence of recursive linear interpolations between successive control points.
 
 Suppose we have the 4 control points
-![[Screenshot 2023-11-18 at 6.15.45 PM.png | -s | -center]]
+![[Screenshot 2023-11-18 at 6.15.45 PM.png|300]]
 1. Linearly interpolate $u$ between $p_i$ and $p_{i+1}$
-![[Screenshot 2023-11-18 at 6.16.48 PM.png | -s | -center]]
+![[Screenshot 2023-11-18 at 6.16.48 PM.png|300]]
 2. Recursively interpolate between the points until there is only 1 set of interpolation
-![[Screenshot 2023-11-18 at 6.18.18 PM.png | -s | -center]]
+![[Screenshot 2023-11-18 at 6.18.18 PM.png|300]]
 
 Then, we can obtain $p(u)$ in an adaptive manner
 
 ### Subdivisions of Bézier curves
 - We can recursively subdivide a curve segment into two shorter Bezier curve segments
 Observe that the each interpolating points become the new control points
-![[Screenshot 2023-11-18 at 6.22.02 PM.png | -s | -center]]
+![[Screenshot 2023-11-18 at 6.22.02 PM.png|300]]
 - Now there is a *left* curve segment and *right* curve segment
 - Check if the *convex hull* of the *left* and *right* is flat enough
 	- If it is flat, draw as a straight line
 	- If it is not flat enough, subdivide with De Casteljau’s algorithm
-![[Screenshot 2023-11-18 at 6.26.04 PM.png | -s | -center]]
+![[Screenshot 2023-11-18 at 6.26.04 PM.png|300]]
 
 ---
 
