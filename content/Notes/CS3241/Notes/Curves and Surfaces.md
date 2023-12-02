@@ -44,7 +44,19 @@ Some surfaces cannot be represented, such as a vertical straight line.
 ### Curves in 3D
 >[!example]
 >Requires two *independent variables*
->> $$z = f(x, y)$$
+>$$
+>y = f(x)
+>$$
+>$$
+>z = g(x)
+>$$
+
+### Surfaces in 3D
+>[!example]
+>Requires two *independent variables*
+>$$
+>z = f(x, y)
+>$$
 
 Some surfaces cannot be expressed in explicit form, such as a sphere
 
@@ -62,10 +74,25 @@ $$ g(x, y, z) = 0$$
 >- Difficult to obtain points on the curves and surfaces because the equations are just a *membership* test.
 >- Difficult to render using rasterization approach, but easier to render using ray tracing
 
+### Surfaces in 3D
+$$
+f(x, y, z) = 0
+$$
+- $ax + by + cz + d = 0$ (plane)
+- $x^2 + y^2 + z^2 - r^2 = 0$ (sphere)
+
 ---
 ## Parametric form
 ### Curves in 2D and 3D
 Each spatial variable for points on the curve is expressed in terms of an independent variable $u$, the parameter.
+
+For curves in 2D
+$$
+p(u) = \begin{bmatrix}
+x(u) \\
+y(u)
+\end{bmatrix}
+$$
 
 For the case of curves in 3D space,
 
@@ -76,7 +103,17 @@ y(u) \\
 z(u)
 \end{bmatrix}
 $$
-Then, we can also find the *tangent vector* (velocity) at a point
+
+Then, we can also find the *tangent vector* (velocity) at a point by finding the derivative:
+
+$$
+\dfrac{dp(u)}{du} = \begin{bmatrix}
+\dfrac{dx(u)}{du} \\
+\dfrac{dy(u)}{du} \\
+\dfrac{dz(u)}{du}
+\end{bmatrix}
+$$
+
 
 ### Surfaces in 3D
 Now requires 2 parameters which forms a rectangular domain
@@ -87,7 +124,9 @@ y(u, v) \\
 z(u, v)
 \end{bmatrix}
 $$
-To find the normal vector at a point on the curve, find the cross product of the derivative![[curvesandsurfaces-parametricform.png| -s | -center]]
+To find the normal vector at a point on the curve, find the cross product of the derivative
+
+![[curvesandsurfaces-parametricform.png|300]]
 
 ### Parametric polynomial curves
 - Parametric forms are not unique. Given a curve or surface, it can be represented in many ways
@@ -95,7 +134,7 @@ To find the normal vector at a point on the curve, find the cross product of the
 - Stability is only achieved for polynomials of lower degree in this case
 
 A parametric polynomial curve of degree $n$ (or order $n + 1$) is of the form:
-![[curvesandsurfaces-parametricpolynomial.png| -center]]
+![[curvesandsurfaces-parametricpolynomial.png|400]]
 Note that the each parametric function is polynomial in $u$ $\implies$ we need $n+1$ for each degree.
 
 >[!example]
@@ -108,7 +147,7 @@ By convention, we assume,
 $$ 0 \leq u \leq 1 $$
 ### Parametric polynomial surfaces
 A parametric polynomial surface is of the form
-![[curvesandsurfaces-parametricpolynomialsummation.png| -center]]
+![[curvesandsurfaces-parametricpolynomialsummation.png|200]]
 which needs $3(n + 1)(m + 1)$ coefficients in { $c_{ij}$ } and $n = m = 3$. Therefore, we need 48 coefficients
 - Restrict the range $0 \leq u, v \leq 1$ to define a *surface patch*
 
@@ -123,15 +162,24 @@ To create a *long* curve, we join multiple segments of lower degree. This gives 
 >If it is of degree 2 (quadratic polynomial), we can only bend at one point
 
 $$
-p(u) = c_0 + c_1u + c_2u^2 + c_3u^3 = \sum_{k = 0}^3 u^k c
+p(u) = c_0 + c_1u + c_2u^2 + c_3u^3 = \sum_{k = 0}^3 u^k c_k
 $$
-Note that each $u$ and $c$ are triplets
+where $c_k = \begin{bmatrix} c_{xk} & c_{yk} & c_{zk}\end{bmatrix}^T$.
+
+---
+Rewrite as
+$$
+p(u) = c_0 + c_1u + c_2u^2 + c_3u^3 = \sum_{k = 0}^3 u^k c_k = u^T c
+$$
+where $c = \begin{bmatrix} c_0 & c_1 & c_2 & c_3\end{bmatrix}^T$ and $u = \begin{bmatrix} 1 & u & u^2 & u^3 \end{bmatrix}^T$
+
+---
 
 ### Specifying curve segments
 Normally, we do not provide values of 12 coefficients of $p(u)$.
 
 Instead, provide geometric data that can be used to derive the values of the coefficients of $p(u)$. This data consists of a small number of control points or data points
-![[curvesandsurfaces-controlpoints.png| -center]]
+![[curvesandsurfaces-controlpoints.png|500]]
 #### Cubic interpolation curves
 Given control points $p$, the curve must pass through all the points in $p$, such that
 
@@ -142,7 +190,7 @@ p(1) = p_3
 \end{align}
 $$
 
-![[curvesandsurfaces-pathpoints.png| -center]]
+![[curvesandsurfaces-pathpoints.png|200]]
 
 ### Deriving cubic interpolating curves
 >[!info] Goal

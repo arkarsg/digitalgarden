@@ -8,27 +8,15 @@ For every pixel
 	Shade depending on light and normal vector (use Phong reflection model)
 ```
 
-```start-multi-column
-ID: ID_g64e
-Number of Columns: 2
-Largest Column: standard
-Border: off
-Shadow: off
-```
 ### Rasterization
-
 Given a primitive in 3D space, determine which pixels are covered by the primitive
 Outer loop : looping through each primitive
 Inner loop : looping through each pixel
-
---- column-end ---
 
 ### Ray casting
 At each pixel, determine which primitive covers it
 Outer loop: set of all pixels
 Inner loop: Looping through each primitive
-
---- end-multi-column
 
 # Ray tracing
 From the closest intersection point, *secondary* rays are produced (in addition to lighting computation):
@@ -60,14 +48,14 @@ This is also known as *recursive ray tracing* as a primary ray produces $n$ seco
 
 ---
 
-![[raytracing-formula.png| -center | -m]]
-![[raytracing-rays.png| -m | -center]]
+![[raytracing-formula.png|500]]
+![[raytracing-rays.png|500]]
 
 >[!note]
 >In the refracted view, imagine you are at the bottom of the swimming pool and looking at the sun. The dot product is the intensity of the light
 
 ## Computing reflection / refraction rays
-![[raytracing-rays 1.png| -center | -m]]
+![[raytracing-rays 1.png|500]]
 >[!note] Refraction
 >Need to know the refractive index based on Snell’s Law
 
@@ -75,13 +63,13 @@ This is also known as *recursive ray tracing* as a primary ray produces $n$ seco
 >[!caution] 
 >Shadow ray is not considered in the branching factor as it is not recursively spawned
 
-![[raytracing-raytree.png| -m | -center]]
+![[raytracing-raytree.png|500]]
 
 ## Shadow rays
 At each surface intersection point, a shadow ray is shot towards each light source to determine any occlusion between light source and surface point.
 
 - Need to find only one opaque occluder to determine the occlusion
-![[raytracing-illumination.png| -m | -center]]
+![[raytracing-illumination.png|400]]
 
 $k_{\text{shadow}}$ : 0 if it is in shadow, 1 if it is not in shadow
 

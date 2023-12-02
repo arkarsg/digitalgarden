@@ -3,7 +3,7 @@ title: Hello 👋
 ---
 ``` toggl
 summary
-past 13 days
+past 14 days
 ```
 # Notes
 Modules taken in AY2324 Semester 1
@@ -19,7 +19,7 @@ Modules taken in AY2324 Semester 1
 	- [x] Tutorial 4
 	- [x] Tutorial 5
 	- [x] Tutorial 6
-	- [ ] Tutorial 7
+	- [x] Tutorial 7
 	- [ ] Tutorial 8
 	- [ ] Tutorial 9
 - [ ] Revisit Lectures
