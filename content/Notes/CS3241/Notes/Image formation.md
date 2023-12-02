@@ -61,14 +61,14 @@ Special purpose hardware needed for rendering realism – RenderMan etc
 
 Given a ==3D point==  $(x, \space y, \space z)$ , use *trigonometry* to find the projection on the screen.
 
-![[pinholecamera.png| -center | -m]]
+![[pinholecamera.png|80%]]
 
 ## Synthetic camera model
 
 >[!aside | right +++++]
 >Image plane (where projection of p) lies can be *virtual*. (ie it does not need to be on the screen of the camera). Unlike the screen of the camera, the resultant image on the image plane will *not be inverted*.
 
-![[projectioncamera.png| -center | -m]]
+![[projectioncamera.png|80%]]
 
 ---
 
@@ -112,7 +112,7 @@ Border: off
 
 --- end-multi-column
 
-![[sensitivityoflighttoeyes.png| -center | -s]]
+![[sensitivityoflighttoeyes.png|50%]]
 
 Our eyes are less sensitive to blue light because the range of activation for blue light is smaller than red and green.
 
@@ -210,7 +210,7 @@ This approach only considers *local lighting* and is *primitive-based rendering*
 
 3D objects are *approximated* by and represented as a net or ==mesh== of planar polygonal facets.
 
-![[objecttovertices.png| -center | -m]]
+![[objecttovertices.png|80%]]
 
 ## Rendering pipeline
 
@@ -222,9 +222,9 @@ The pipeline consists of stages that ==each primitive== must go through.
 >[!aside | right +++++]
 > ==Primitive== refers to a polygon.
 
-![[vertexpipeline.png| -center | -m]]
+![[vertexpipeline.png|80%]]
 
-![[vertexpipelineexample.png| -center | -m]]
+![[vertexpipelineexample.png|80%]]
 
 ### Vertex processing
 

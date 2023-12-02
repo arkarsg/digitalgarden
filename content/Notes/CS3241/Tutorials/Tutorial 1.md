@@ -71,7 +71,7 @@ Note that human eyes are [[Image formation#Three-color theory | less sensitive t
 
 #### Question 3
 
-![[tut01q3.jpeg| -m | -center]]
+![[tut01q3.jpeg|80%]]
 
 ---
 

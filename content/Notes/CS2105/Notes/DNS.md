@@ -50,7 +50,7 @@ DNS stores RR in *distributed* databases implemented in ==hierarchy== of many na
 >[!note]- Why distributed?
 >Note that there are billions of devices connected in the internet. Therefore, all DNS records should not be recorded in one DNS server for availability.
 
-![[DNSheirarchy.png| -m | -center]]
+![[DNSheirarchy.png|80%]]
 
 ### Root servers
 
@@ -93,13 +93,13 @@ Border: off
 
 ### Iterative query
 
-![[iterativequery.png| -center | -l]]
+![[iterativequery.png|100%]]
 
 --- column-end ---
 
 ### Recursive query
 
-![[recursivequery.png| -center | -l]]
+![[recursivequery.png|100%]]
 
 --- end-multi-column
 

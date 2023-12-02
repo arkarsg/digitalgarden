@@ -171,11 +171,11 @@ Material properties of a surface are modelled by *ambient*, *diffuse*, *specular
 - Vector of $3$ colors, $[ 0, 1 ]$.
 - Shininess coefficient $n$, $[ 1, 128 ]$.
 
-![[illumination-nk.png| -m | -center]]
+![[illumination-nk.png|80%]]
 
 ---
 
-![[illumination-multiplephong.png| -m | -center]]
+![[illumination-multiplephong.png|80%]]
 
 ---
 
@@ -325,7 +325,7 @@ Then, use PIE at the vertex using the average normal vector. As a result, each v
 
 Then, smoothly interpolate the computed colors at the vertices to the interior of the polygon during [[Rasterization#Rasterization]].
 
-![[illumination-gouraudnormals.png| -center | -xs]]
+![[illumination-gouraudnormals.png|30%]]
 
 ```cpp
 glShadeModel(GL_SMOOTH);

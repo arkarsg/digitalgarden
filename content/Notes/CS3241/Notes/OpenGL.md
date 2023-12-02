@@ -6,12 +6,12 @@
 
 ## Software organisation
 
-![[openglarchitecture.png| -m | -center]]
+![[openglarchitecture.png|80%]]
 
 >[!info]- Rendering pipeline
 >![[Image formation#Rendering pipeline]]
 
-![[pipeline.png| -m | -center]]
+![[pipeline.png|80%]]
 
 >[!aside | right +++++]
 >In perspective and clipping, we have the coordinates in the window space. With that information, we can color that pixel in the *rasterisation* stage.
@@ -196,7 +196,7 @@ Internally, OpenGL convert vertices to *camera coordinates* and later to *window
 >
 >The ==default viewing volume== is a box centred at the origin with a side of length *2*.
 
-![[viewvolume.png| -m | -center]]
+![[viewvolume.png|80%]]
 
 ### Orthographic viewing
 >[!note] Default orthographic view
@@ -205,7 +205,7 @@ Internally, OpenGL convert vertices to *camera coordinates* and later to *window
 >[!caution] The direction of z-axis
 >Note that $z-axis$ points towards the viewer. Therefore, the camera is looking towards the negative $z-axis$.
 
-![[orthogonalviewingrectangle.png| -m | -center]]
+![[orthogonalviewingrectangle.png|80%]]
 
 ### Transformations and viewing
 >[!note]
@@ -289,7 +289,7 @@ glShadeModel(GL_FLAT)
 glViewport(x, y, w, h)
 ```
 
-![[viewport.png| -center | -m]]
+![[viewport.png|80%]]
 
 ---
 
@@ -306,7 +306,7 @@ glViewport(x, y, w, h)
 >[!note] Constructing the Gasket fractal
 >Recursively subdivide the triangle
 
-![[gaskettriangle.png| -s | -center]]
+![[gaskettriangle.png|50%]]
 
 Note that with more subdivisions, $\textsf{area} \rightarrow 0$ and $\textsf{perimeter} \rightarrow \inf$.
 

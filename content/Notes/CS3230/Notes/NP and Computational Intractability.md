@@ -51,7 +51,7 @@ If $X \leq_{p} Y$ and $Y \leq_{p} X$, then $X \equiv_{p} Y$
 #### Independent set
 Given a graph, $G = (V, E)$, and an integer $k$, is there a subset of vertices $S \subseteq V$ such that $|S| \geq k$ and for each edge at most one of its endpoints is in $S$?
 
-![[reductability-setcover.png| -m | -center]]
+![[reductability-setcover.png|80%]]
 #### Vertex-Cover $\equiv_{p}$ Independent-set
 >[!aside | right +++++]
 >==Vertex cover== is a set $S$ of vertices of $G$ such that every edge of $G$ has at least one of member of $S$ as an endpoint.
@@ -59,7 +59,7 @@ Given a graph, $G = (V, E)$, and an integer $k$, is there a subset of vertices $
 
 Show that $S$ is an independent set $\iff$ $V - S$ is a vertex cover.
 
-![[reductability-independetsetcover.png| -s | -center]]
+![[reductability-independetsetcover.png|50%]]
 ($\implies$)
 1. Let $S$ be any independent set
 2. Consider an arbitrary edge $(u, v)$
@@ -75,7 +75,7 @@ Show that $S$ is an independent set $\iff$ $V - S$ is a vertex cover.
 ## Reduction from special case to general case
 #### Set cover
 Given a set $U$ of elements, a collection $S_1, S_2, … , S_m$ of *subsets* of $U$, and an integer $k$, does there exist a collection of $\leq k$ of these sets whose union equals to $U$?
-![[reductability-vertexcover.png| -m | -center]]
+![[reductability-vertexcover.png|80%]]
 #### Vertex-cover $\leq_p$ Set-cover
 >> Vertex-cover polynomial reduce to Set-cover
 
@@ -86,11 +86,11 @@ Given a *vertex-cover* instance $G = (V, E), \enspace k$ , we construct a *set c
 	1. $U = E, S_v = \{ e \in E : \text{e incident to v}\}$
 2. *Set-cover* of size $\leq k \iff$ vertex cover of size $\leq k$ 
 
-![[reductability-vertexcovervssetcover.png| -m | -center]]
+![[reductability-vertexcovervssetcover.png|80%]]
 
 ---
 ## Reduction via gadgets
-![[reductability-3sat.png| -m | -center]]
+![[reductability-3sat.png|80%]]
 #### 3-SAT $\leq_p$ Independent-set
 >> 3-SAT polynomial reduces to Independent set
 
@@ -105,7 +105,7 @@ $G$ contains independent set of size $k = |\Phi| \iff \Phi$ is satisfiable
 ($\impliedby$)
 - Given satisfying assignment, select one *true literal* from each triangle. This is an independent set of size $k$.
 
-![[reductability-3satgraph.png| -m | -center]]
+![[reductability-3satgraph.png|80%]]
 
 ---
 
@@ -253,13 +253,13 @@ Given an arbitrary instance of a CIRCUIT-SAT, we construct an equivalent instanc
 1. Let $K$ be any circuit
 2. Create a 3-SAT variable $x_i$ for each circuit element $i$
 3. Make circuit compute correct values at each node. There will be 3 cases depending on the three types of gates:
-![[np-circuitsat.png| -center | -s]]
+![[np-circuitsat.png|50%]]
 4. Hardcode the input values and the output value:
 	1. $x_5 = 0$
 	2. $x_0 = 1$
 5. Turn clauses of length < 3 into clauses of length exactly 3
 
-![[np-genres.png| -m | -center]]
+![[np-genres.png|80%]]
 
 ---
 # Co-NP and asymmetry of NP
@@ -307,8 +307,8 @@ The problem $X$ with good characterization belongs to both P and NP.
 # Sequencing problems
 ## Hamiltonian Cycle
 Given an undirected graph $G = (V, E)$, does there exist a simple *cycle* that contains every node in $V$?
-![[np-hamcycle.png| -s | -center]]
-![[np-nonhamcycle.png| -s | -center]]
+![[np-hamcycle.png|50%]]
+![[np-nonhamcycle.png|50%]]
 
 ## Directed hamiltonian cycle
 Given a *digraph* $G= (V, E)$, does there exists a simple *directed cycle* that contains every node in $V$.
@@ -316,7 +316,7 @@ Given a *digraph* $G= (V, E)$, does there exists a simple *directed cycle* that 
 >> **DIR-HAM-CYCLE $\leq_{p}$ HAM-CYCLE**
 
 Given a directed graph $G = (V, E)$, construct an undirected graph $G’$ with $3n$ nodes.
-![[np-directedhamcycle.png| -center | -m]]
+![[np-directedhamcycle.png|80%]]
 
 $G$ has a Hamiltonian cycle $\iff$ $G'$ has a Hamiltonian cycle.
 
@@ -336,7 +336,7 @@ $G$ has a Hamiltonian cycle $\iff$ $G'$ has a Hamiltonian cycle.
 Given 3-SAT instance $\Phi$ with with $n$ variables $x_i$ and $k$ clauses,
 - Construct $G$ to have $2^n$ Hamiltonian cycles
 - Each path should have $2k$ nodes where $k$ is the number of clauses in the expression
-![[np-3sat.png| -center | -m]]
+![[np-3sat.png|80%]]
 
 1. Add edges *left to right* on $P_i$ to correspond to the assignment $x_i$ = True
 2. Add edges *right to left* on $P_i$ to correspond to the assignment $x_i$ = False

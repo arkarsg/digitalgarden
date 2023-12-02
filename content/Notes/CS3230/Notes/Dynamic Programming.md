@@ -19,7 +19,7 @@ In dynamic programming, we are breaking up a problem into a series of overlappin
 ---
 
 This forms the optimal substructure where:
-![[optimalsubstructure.png| -m | -center]]
+![[optimalsubstructure.png|80%]]
 
 
 >[!note] Proving optimality
@@ -87,7 +87,7 @@ $$
 
 for some $i_1, … , i_t \in \{1,...,k\}$. Then if $j’ = d_{i_1} + d_{i_2} + ... + d_{i_t-1}$, $M[j’] = t - 1$ because otherwise if $M[j’] < t - 1 \implies M[j] < t$.
 
-![[coinchange.png| -s | -center]]
+![[coinchange.png|50%]]
 
 ```plain-text
 Num_coins_dp(n, d):
@@ -140,7 +140,7 @@ How to fill knapsack so as to maximise total value?
 >[!note] In other words
 >if $i$ is in the solution, then $OPT(i, w) = w_i + OPT(i-1, w - w_i)$ since we now seek to use the remaining capacity of $w - w_i$ in an optimal way across items $1, 2, …, n - 1$
 
-![[knapsack.png| -m | -center]]
+![[knapsack.png|80%]]
 
 ---
 
@@ -160,7 +160,7 @@ for i=1 to n:
 			M[i, w] = max{ M[i-1, w], v_i + M[i-1, w-w_i] }
 ```
 
-![[knapsacktable.png| -m | -center]]
+![[knapsacktable.png|80%]]
 
 ### Running time
 
@@ -217,7 +217,7 @@ Then, an alignment is a set of $M$ of pairs $(i, j)$ such that each index appear
 **Case 2b** : OPT leaves $y_j$ unmatched
 - Pay gap for $y_j$ and min cost of aligning $x_1, x_2, …, x_{i-1}$ and $y_1, y_2, … , y_{j-1}$
 
-![[sequencealignment.png| -m | -center]]
+![[sequencealignment.png|80%]]
 
 ```plain-text
 Sequence-Alignment(m, n, X, Y, delta, alpha) {
@@ -278,7 +278,7 @@ Note that `Dijkstra` can fail if there are negative edge costs, and re-weighting
 **Case 2** : $P$  uses exactly $i$ edges
 - if $(v, w)$ is the first edge, then OPT uses $(v,w)$ and then selects best $w-t$ path using at most $i-1$ edges
 
-![[shortestpath.png| -m | -center]]
+![[shortestpath.png|80%]]
 
 By our observation, if no negative cycles, then $OPT(n-1, v)$ is the length of the shortest $v-t$ path
 

@@ -153,8 +153,8 @@ output intervals [s_j, f_j]
 
 **Claim** : Swapping two adjacent, inverted jobs reduces the number of inversions by one and does not increase the max lateness
 
-![[inversion.png| -center | -m]]
-![[greedyinversion.png| -center | -m]]
+![[inversion.png|80%]]
+![[greedyinversion.png|80%]]
 
 #### Greedy schedule S is optimal
 
@@ -206,12 +206,12 @@ Shadow: off
 ```
 
 #### Case 1
-![[unreducedtoreducedcache.png| -m | -center]]
+![[unreducedtoreducedcache.png|80%]]
 
 --- column-end ---
 
 #### Case 2
-![[unreducedtoreducedcache2.png| -m | -center]]
+![[unreducedtoreducedcache2.png|80%]]
 
 --- end-multi-column
 

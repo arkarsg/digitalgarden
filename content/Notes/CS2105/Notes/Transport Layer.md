@@ -130,7 +130,7 @@ Shadow: off
 3. Carry if any from the most significant bit and add to the result
 4. Compute 1’s complement to get UDP checksum
 
-![[checksum.png| -m | -center]]
+![[checksum.png|80%]]
 
 ---
 
@@ -167,7 +167,7 @@ Border: off
 >[!aside | right +++++]
 >Characteristics of unreliable channel will determine the complexity of *reliable data transfer protocols* (==rdt==)
 
-![[unreliablechannel.png| -m | -center]]
+![[unreliablechannel.png|80%]]
 
 >[!note]
 > ==Finite state machine== shows the $\frac{\text{event}}{\text{actions}}$ from one state to another.
@@ -189,7 +189,7 @@ This will be illustrated through iterating the following
 ### rdt 1.0
 - Assume underlying channel is perfectly reliable.
 
-![[rdt1.png| -m | -center]]
+![[rdt1.png|80%]]
 
 ---
 
@@ -205,9 +205,9 @@ To ==recover== from bit errors:
 >[!caution] Stop and wait protocol
 >Sender sends one packet at a time, then waits for a receiver response.
 
-![[rdt2.png| -m | -center]]
+![[rdt2.png|80%]]
 
-![[rdt2fsm.png| -s | -center]]
+![[rdt2fsm.png|50%]]
 
 #### What if `ACK/NAK` is corrupted?
 When `ACK/NAK` is corrupted, sender does not know what happened at the receiver. Sender will just retransmit when it receives corrupted `ACK/NAK`. However, this may cause duplicate packets which the receiver cannot identify.
@@ -222,13 +222,13 @@ Shadow: off
 ```
 #### Corrupted ACK
 
-![[rdt2corruptedack.png| -center | -m]]
+![[rdt2corruptedack.png|80%]]
 
 --- column-end ---
 
 #### Corrupted NAK
 
-![[rdt2corruptednak.png| -center | -m]]
+![[rdt2corruptednak.png|80%]]
 
 --- end-multi-column
 
@@ -240,15 +240,15 @@ Shadow: off
 - Sender adds *sequence number* to each packet
 - Receiver *discards* duplicate packet
 
-![[rdt2.1.png| -m | -center]]
+![[rdt2.1.png|80%]]
 
 #### Sender FSM
 
-![[fsmsender2.1.png| -m | -center]]
+![[fsmsender2.1.png|80%]]
 
 #### Receiver FSM
 
-![[fsmreceiver2.1.png| -m | -center]]
+![[fsmreceiver2.1.png|80%]]
 
 ---
 
@@ -262,7 +262,7 @@ Instead of sending NAK, receiver sends ACK for the last packet received OK. *Rec
 
 If there are duplicate ACKs at sender, sender retransmits the current packet.
 
-![[rdt2.2.png| -m | -center]]
+![[rdt2.2.png|80%]]
 
 ---
 
@@ -279,11 +279,11 @@ If there are duplicate ACKs at sender, sender retransmits the current packet.
 
 Re-transmission will generate duplicate in some cases but receiver may use ==sequence number== to detect → receiver must specify the ==sequence number== of the packet being ACKed.
 
-![[rdt2.2senderpktloss.png| -m | -center]]
+![[rdt2.2senderpktloss.png|80%]]
 
-![[rdt2.2receiverpktloss.png| -m | -center]]
+![[rdt2.2receiverpktloss.png|80%]]
 
-![[fsmrdt2.2.png| -m | -center]]
+![[fsmrdt2.2.png|80%]]
 
 ---
 
@@ -383,7 +383,7 @@ function Receiver {
 }
 ```
 
-![[gbn.png| -m | -center]]
+![[gbn.png|80%]]
 
 ### Selective repeat
 
@@ -471,11 +471,11 @@ A TCP connection is identified by 4 tuple: `(srcIPAddr, srcPort, destIPAddr, des
 
 TCP sends and receives *buffers*, where 2 buffers are created after handshaking at any side.
 
-![[tcpbuffer.png| -m | -center]]
+![[tcpbuffer.png|80%]]
 
 ## TCP header
 
-![[tcpheader.png| -m | -center]]
+![[tcpheader.png|80%]]
 
 ### TCP sequence number
 
@@ -494,9 +494,9 @@ Therefore, the sequence number of 1st TCP segment is `0`, 2nd TCP segment is `10
 
 The ACK number is the sequence number of the *next* byte of data expected by the receiver
 
-![[tcpseqnum.png| -m | -center]]
+![[tcpseqnum.png|80%]]
 
-![[tcpevents.png| -m | -center]]
+![[tcpevents.png|80%]]
 
 ---
 
@@ -537,10 +537,10 @@ Before exchanging app data, TCP sender and receiver *shake hands* — sender and
 
 
 
-![[tcphandshake.png| -m | -center]]
+![[tcphandshake.png|80%]]
 
 ### Closing connection
 
 Client, server each close their side of connection and send TCP segment with `FIN` bit = 1
 
-![[tcpcloseconnection.png| -m | -center]]
+![[tcpcloseconnection.png|80%]]

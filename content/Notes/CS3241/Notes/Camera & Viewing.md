@@ -211,7 +211,7 @@ Note that the `left` of the `near` plane and `far` plane may be different. By co
 
 The `glFrustum` function then generates a matrix that maps the ==view frustum== to the canonical view volume:
 
-![[glfrustumtondc.png| -m | -center]]
+![[glfrustumtondc.png|80%]]
 ### Perspective projection matrix
 
 ![[perspectivetransformation.png|500]]

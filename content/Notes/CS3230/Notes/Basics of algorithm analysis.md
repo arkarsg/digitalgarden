@@ -18,7 +18,7 @@ Notice that the running time is ==machine dependent== and ==output dependent==.
 A *model of computation* where only ==RAM== and ==CPU== is considered. 
 
 
-![[wordrammodel.png| -m | -center]]
+![[wordrammodel.png|80%]]
 
 - Word is the ==basic storage== unit of RAM. Word is a collection of few bytes.
 - Each input item is stored in ==binary format==

@@ -36,7 +36,7 @@ What happens when we send an *IP* datagram from one host to another, on the same
 
 - The sending NIC (adapter) encapsulates *IP* datagram in ==Ethernet frame==.
 
-![[lan-macaddress.png| -center | -m]]
+![[lan-macaddress.png|80%]]
 
 **Preamble** : 7 bytes with pattern `10101010`, followed by 1 byte with pattern `10101011` also called *start of frame*. Used to synchronise receiver and sender clock rates.
 
@@ -111,7 +111,7 @@ Ethernet protocol used on each incoming link but no collisions.
 Switches can be connected in hierarchy
 
 To create a LAN,
-![[lan-lan.png| -m | -center]]
+![[lan-lan.png|80%]]
 ![[lan-to_internet.png| -m | -center]]
 ### Selective forwarding
 How does switch know $A$ is reachable via interface 1?
@@ -126,7 +126,7 @@ However, routing protocol is not necessary. Use *self-learning* instead
 >When a frame is received, switch leans the location of sender. and records sender/location pair in switch table.
 
 ### Frame filtering/ forwarding
-![[lan-switchtable.png| -m | -center]]
+![[lan-switchtable.png|80%]]
 
 ```
 Record incoming link, MAC address of sending host
@@ -141,7 +141,7 @@ else
 ```
 
 ---
-![[lan-switchvsrouters.png| -center | -m]]
+![[lan-switchvsrouters.png|80%]]
 
 ---
 # Address Resolution Protocol (ARP)

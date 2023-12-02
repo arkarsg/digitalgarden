@@ -53,14 +53,14 @@ This occurs when there is *texture minification* where many texels are mapped to
 
 A fragment is mapped to a quadrilateral area (called the *pre-image*) in the texture space
 
-![[texture-antialiasing.png| -m | -center]]
+![[texture-antialiasing.png|80%]]
 
 ## Mipmapping
 By approximating each *pre-image* using a square, we can create a set of **pre-filtered** texture maps and **point-sample** the appropriate pre-filter map for each fragment according to the degree of **texture minification**
 
 A ==mipmap== is created by averaging down the original image successively by half the resolution.
 
-![[texture-mipmapping.png| -s | -center]]
+![[texture-mipmapping.png|50%]]
 
 ### Selecting mipmap level
 A **mipmap** level is chosen for texture lookup according to the amount of texture minification.
@@ -76,7 +76,7 @@ The ideal mipmap level be non-integer. This occurs when linear interpolation of 
 
 The image of the surrounding is first captured and stored in texture map. During rendering of the object, the *reflected eye ray* is used to reference the texture map.
 
-![[texture-environment.png| -m | -center]]
+![[texture-environment.png|80%]]
 
 >[!caution]
 >This is only geometrically correct when object is a point and/or the surrounding is infinitely far away
@@ -84,7 +84,7 @@ The image of the surrounding is first captured and stored in texture map. During
 ## Cube map
 Image of the environment can be stored in a *cube map* and has 6 separate images, situated in the $+x, -x, +y, -y, +z, -z$ directions.
 
-![[texture-enviromentmap.png| -center | -s]]
+![[texture-enviromentmap.png|50%]]
 
 ## Bump mapping
 Simulates small complex geometric features on surfaces without really the need to model them. A height field is used to perturb surface normals, and the perturbed normals are used in light reflection computation.

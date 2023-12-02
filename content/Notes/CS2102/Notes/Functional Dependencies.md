@@ -360,7 +360,7 @@ Does *not* allow
 - **nested relations** — attributes whose values for an individual tuple are non-atomic
 
 >[!caution] Not a good design
-![[normalization-1nf.png| -m | -center]]
+![[normalization-1nf.png|80%]]
 > - Unnecessary redundancy thrown in to follow the 1NF.
 
 >[!example] FD analysis

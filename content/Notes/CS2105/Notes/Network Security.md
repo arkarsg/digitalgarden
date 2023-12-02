@@ -13,7 +13,7 @@ Suppose there is *Alice* and *Bob* who want to communicate over a public channel
 
 As such, we say that *Alice* and *Bob* wish to communicate ==securely==.
 
-![[networksecurity-securechannel.png| -s | -center]]
+![[networksecurity-securechannel.png|50%]]
 
 >[!example]
 >1. Web browsers/ server for electronic transactions
@@ -46,7 +46,7 @@ Based on the values of the keys there are 2 types of cryptographic algorithm
 >[!note]
 >Alice and Bob share the same (symmetric) key, $K_s$
 
-![[networksecurity-ciphertext.png| -s | -center]]
+![[networksecurity-ciphertext.png|50%]]
 
 Alice and Bob needs to agree on the *key value* prior to communication via some other **secure** means.
 
@@ -86,14 +86,14 @@ The number of keys is $2^K !$ → brute force is impossible.
 - Encryption algorithm on the sender uses a *public* key $K_B^+$ which belongs to the receiver and is known to *all*.
 - The receiver uses a *private* key, $K_B^-$ which also belongs to the receiver.
 
-![[networksecurity-ciphertextkeys.png| -s | -center]]
+![[networksecurity-ciphertextkeys.png|50%]]
 
 1. The algorithms must be *invertible*.
 2. Given the public key, it should be impossible to compute private key (Therefore, encryption needs to be more complex)
 
 ### RSA
 >[!note]- Modulo math
-![[networksecurity-modulomaths.png| -s | -center]]
+![[networksecurity-modulomaths.png|50%]]
 
 - Read the *message* just a bit pattern and uniquely represent as an *integer* number
 - Thus, encrypting a message is equivalent to encrypting a number
@@ -162,7 +162,7 @@ The sender and receiver share a auth key *s*.
 
 To ensure message integrity, augment the message as $(m, H(m + s))$.
 
-![[networksecurity-authentication.png| -s | -center]]
+![[networksecurity-authentication.png|50%]]
 
 >[!success] This achieves [[Network Security#Message integrity]]
 ---
@@ -198,7 +198,7 @@ Non-repudiation
 
 Generate hash value for a large message.
 
-![[networksecurity-digitalsignature.png| -s | -center]]
+![[networksecurity-digitalsignature.png|50%]]
 
 ---
 ## Public key certification

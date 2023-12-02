@@ -137,7 +137,7 @@ where $p_0 = 2\Delta{y} - \Delta{x}$
 	- Non-convex polygons are assumed to be *tessellated*
 - This is usually combined with ==z-buffer algorithm==
 
-![[scanlineorder.png| -m | -center]]
+![[scanlineorder.png|80%]]
 
 ---
 
@@ -173,7 +173,7 @@ Clipping is done against *clipping window* for 2D objects, *clipping volume* for
 #### Approach
 - Draw 4 lines that determine the sides of the clipping window
 
-![[boundary.png| -center | -s]]
+![[boundary.png|50%]]
 
 **Case 1** : Both endpoints inside all four lines
 - Draw line segment as is
@@ -192,7 +192,7 @@ Clipping is done against *clipping window* for 2D objects, *clipping volume* for
 
 $4$-bit representation
 
-![[outcode.png| -m | -center]]
+![[outcode.png|80%]]
 - Computation of outcode requires at most 4 subtractions
 
 Consider line segments in that lie on different parts of the outcode
@@ -220,7 +220,7 @@ Consider line segments in that lie on different parts of the outcode
 Use $6$-bit representation
 - Clip line segment against planes
 
-![[3doutcode.png| -m | -center]]
+![[3doutcode.png|80%]]
 
 ---
 ## Clip space
@@ -228,12 +228,12 @@ A vertex is in clip space after multiplication by projection matrix and before p
 $\begin{bmatrix}x_{clip} & y_{clip} & z_{clip} & w_{clip} \end{bmatrix} ^{T}$
 
 If it is in *canonical view volume* $[-1, 1]^3$ then, it must be that
-![[clipcdn.png| -center | -m]]
+![[clipcdn.png|80%]]
 
 ---
 
 ### Pipeline clipping of line segments
-![[pipelineclipping.png| -m | -center]]
+![[pipelineclipping.png|80%]]
 
 ---
 
@@ -279,12 +279,12 @@ This is a *object-space* approach where objects are sorted using a *pair-wise* t
 ## Back-face culling
 - Eliminate polygon if it is back-facing and invisible.
 - A polygon is back-facing if $N_p \cdot N < 0$
-![[backfaceculling.png| -m | -center]]
+![[backfaceculling.png|80%]]
 
 ---
 
 ## Image Space approach
-![[imagespace.png| -m | -center]]
+![[imagespace.png|80%]]
 
 ---
 

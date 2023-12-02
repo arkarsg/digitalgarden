@@ -383,7 +383,7 @@ FROM customers c LEFT OUTER JOIN downloads d ON c.customerid = d.customerid;
 
 In the example above, the customers *from the table on the left of the join* who never downloaded a game are combined with `null` values to replace the missing values for the columns of the `download` table. Columns from the *table on the right* of the join are padded with `null` values.
 
-![[leftjoin.png| -m | -center]]
+![[leftjoin.png|80%]]
 
 ---
 ```sql

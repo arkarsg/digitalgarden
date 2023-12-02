@@ -88,7 +88,7 @@ A ==concurrent== execution of a set of transactions is  **serializable** if the 
 
 # Architecture of DBMS
 
-![[dbmsarchitecture.png| -center | -m]]
+![[dbmsarchitecture.png|80%]]
 
 ## Data Independence
 

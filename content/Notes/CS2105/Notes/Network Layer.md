@@ -5,7 +5,7 @@
 
 Network layer delivers packets to receiving hosts. ==Routers== examine header fields of IP datagrams passing it.
 
-![[networklayerservics.png| -m | -center]]
+![[networklayerservics.png|80%]]
 
 ## IP address
 
@@ -37,7 +37,7 @@ Network layer delivers packets to receiving hosts. ==Routers== examine header fi
 3. Host request IP address with ==DHCP request== message
 4. DHCP server sends address with ==DHCP ACK== message
 
-![[DHCPack.png| -center | -m]]
+![[DHCPack.png|80%]]
 
 ## Network interface
 >[!note]
@@ -46,7 +46,7 @@ Network layer delivers packets to receiving hosts. ==Routers== examine header fi
 A *host* usually has one or two network interfaces (ie wired ethernet and WiFi)
 - A router typically has multiple interfaces
 
-![[subnets.png| -s | -center]]
+![[subnets.png|50%]]
 
 ## IP address and subnet
 An IP address logically comprises of two parts:
@@ -66,12 +66,12 @@ The Internet’s IP address assignment strategy is known as ==Classless Inter-do
 - Subnet prefix of IP address is of arbitrary length
 - Address format: `a.b.c.d/x` where `x` is the number of bits in subnet prefix of IP address
 
-![[subnetprefix.png| -m | -center]]
+![[subnetprefix.png|80%]]
 
 ### Subnet mask
 A ==subnet mask== is used to determine which subnet an IP address belongs to.
 
-![[subnetmask.png| -m | -center]]
+![[subnetmask.png|80%]]
 
 ### IP address allocation
 
@@ -82,16 +82,16 @@ An *ISP* get a block of address from Internet Corporation for Assigned Names and
 - Manages DNS
 - Assigns domain names, resolves disputes
 
-![[subnetorganisation.png| -m | -center]]
+![[subnetorganisation.png|80%]]
 
 #### Special IP Addresses
 
-![[specialipaddr.png| -m | -center]]
+![[specialipaddr.png|80%]]
 
 
 ### Hierarchical addressing
 
-![[subnetrouters.png| -m | -center]]
+![[subnetrouters.png|80%]]
 
 ### Longest prefix match
 
@@ -208,14 +208,14 @@ After every router has exchanged several rounds of updates with its direct neigh
 
 # Network Address Translation
 
-![[nat.png| -m | -center]]
+![[nat.png|80%]]
 
 NAT routers **MUST**:
 1. *Replace* `(source IP, port#)` of every *outgoing datagram* to `(NAT IP address, new port#)`
 2. *Remember* in the ==NAT translation table== the mapping from `(source IP address, port#)` to `(NAT IP address, new port#)`
 3. *Replace* `NAT IP address, new port#)` in destination field of every *incoming datagram* with corresponding `(source IP address, port#)` stored in NAT translation table.
 
-![[natexample.png| -m | -center]]
+![[natexample.png|80%]]
 
 ## Motivation
 - There is no need to rent a range of public IP addresses from ISP → just 1 public IP for the NAT router
@@ -228,7 +228,7 @@ NAT routers **MUST**:
 # Internet Protocol (IP)
 
 ## IPv4 Datagram format
-![[ipv4datagram.png| -m | -center]]
+![[ipv4datagram.png|80%]]
 
 ## IP fragmentation and reassembly
 >[!note]
@@ -238,16 +238,16 @@ If the IP datagram is too large, the IP datagram may be fragmented by routers.
 
 Destination host will reassemble the packet and ==IP header fields== are used to identify fragments and their relative order
 
-![[fragment.png| -s | -center]]
+![[fragment.png|50%]]
 
-![[fragheader.png| -m | -center]]
+![[fragheader.png|80%]]
 
 ---
 **Frag flag** : set to `1` if there is a next fragment from the same segment, `0` if it is the last segment
 
 **Offset** is expressed in unit of 8 bytes
 
-![[fragoffset.png| -m | -center]]
+![[fragoffset.png|80%]]
 
 ---
 # Internet Control Message Protocol (ICMP)

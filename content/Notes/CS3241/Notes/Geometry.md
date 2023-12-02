@@ -317,7 +317,7 @@ Consequently, suppose $M = ABCD$ in which it is a transformation matrices, the t
 >[!caution] General rotation
 >Rotation about an arbitrary axis can be decomposed into the concatenation of rotations about the $x, y, z$ axes, with *Euler Angles*.
 
-![[rotationaboutanyaxis.png| -m | -center]]
+![[rotationaboutanyaxis.png|80%]]
 
 This motivates the need for ==instancing== where a simple object is centred at the origin for convenience.
 
@@ -339,7 +339,7 @@ The *CTM* is defined in the user program and loaded into transformation unit. To
 >[!caution] CTMs
 >Note that the order of transformation in the CTM is backward of the actual desired order of transformation.
 
-![[CTM.png| -m | -center]]
+![[CTM.png|80%]]
 
 >[!caution]
 >The last operation specified is the first operation applied to vertices.

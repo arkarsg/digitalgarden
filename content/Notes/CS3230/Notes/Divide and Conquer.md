@@ -43,7 +43,7 @@ Hanoi(n, src, dst, tmp) {
 >[!aside | right +++++]
 >Note that the `sort` step is a recurrence relation
 
-![[mergesort.png| -m | -center]]
+![[mergesort.png|80%]]
 
 ### Merging in linear time
 >[!note] Merging
@@ -66,7 +66,7 @@ Let $T(n)$ be the number of *comparisons* to mergesort an input of size n.
 
 Then, we have the *recurrence relation*:
 
-![[mergesortrecurrence.png| -center | -m]]
+![[mergesortrecurrence.png|80%]]
 
 Therefore, we have $T(n) = O(n \log_2 n)$
 
@@ -74,7 +74,7 @@ Therefore, we have $T(n) = O(n \log_2 n)$
 ## Proof by recursion tree
 First, assume that $n$ is a power of 2
 
-![[recursiontree.png| -center | -m]]
+![[recursiontree.png|80%]]
 
 - Note that the overhead cost at each level stays the same
 ---
@@ -84,7 +84,7 @@ First, assume that $n$ is a power of 2
 2. Inductive hypothesis: $T(n) = n \log_2 n$
 3. Goal: show that $T(2n) = 2n \log_2 (2n)$
 
-![[recurrencerelation.png| -center | -s]]
+![[recurrencerelation.png|50%]]
 
 ---
 
@@ -107,7 +107,7 @@ Then, two objects are inverted if $i < j$ but $a_i > a_j$
 
 The more the number of inversions, the less similar the two rankings are.
 
-![[inversions.png| -m | -center]]
+![[inversions.png|80%]]
 
 ## Approach
 
@@ -117,10 +117,10 @@ The more the number of inversions, the less similar the two rankings are.
 ---
 
 ### Divide
-![[inversionsdivide.png| -center | -m]]
+![[inversionsdivide.png|80%]]
 
 ### Conquer
-![[inversionsconquer.png| -center | -m]]
+![[inversionsconquer.png|80%]]
 
 ### Combine
 
@@ -130,7 +130,7 @@ The more the number of inversions, the less similar the two rankings are.
 - Count inversions where $a_i$ and $a_j$ are in different halves
 - Merge 2 sorted halves into sorted whole
 
-![[inversionsmerge.png| -m | -center]]
+![[inversionsmerge.png|80%]]
 
 ---
 
@@ -168,7 +168,7 @@ Brute force : ==$\Theta (n^2)$==
 
 → Return best of 3 solutions
 
-![[shortestdistance.png| -m | -center]]
+![[shortestdistance.png|80%]]
 
 ---
 >> How to find closest pair with one point in each side?

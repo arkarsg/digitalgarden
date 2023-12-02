@@ -93,7 +93,7 @@ Connection: keep-alive\r\n
 …
 \r\n
 
-![[requestmessage.png| -s |-centre]]
+![[requestmessage.png|50%]]
 
 ## HTTP response messages
 
@@ -132,7 +132,7 @@ However, there are some applications that require states to be maintained.
 >Back-end database at Web site.
 
 
-![[cookiediagram.png | -center | -m]]
+![[cookiediagram.png|80%]]
 
 ### Conditional GET
 
@@ -143,7 +143,7 @@ Therefore, in `cache`, specify the date of cached copy in HTTP request.
 
 When the HTTP request is made, if the object is modified after `date`, HTTP response will have a `200 OK` code and sends the data from server. Otherwise, HTTP response will have `304 Not modified` and data will not be sent.
 
-![[conditionalget.png| -s | -center]]
+![[conditionalget.png|50%]]
 
 ---
 

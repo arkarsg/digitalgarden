@@ -22,7 +22,7 @@ The internet consists of 2 parts – network edge and network core
 
 # Network Edge (Access Network)
 
-![[accessnetwork.png| -center | -s]]
+![[accessnetwork.png|50%]]
 
 Hosts access the internet ==through access network== which are different ways to access the internet.
 
@@ -30,12 +30,12 @@ Hosts access the internet ==through access network== which are different ways to
 >Switch and hub is used by network edge, not network core
 
 ## Home Network
-![[homenetwork.png| -m | -center]]
+![[homenetwork.png|80%]]
 - **Modem**: connect home network to **ISP** network
 - **Router**: Set up home network to allow connection from multiple devices by assigning IP addresses to each device
 
 ## Enterprise Access Networks (Ethernet)
-![[enterpriseaccessnetwork.png| -m | -center]]
+![[enterpriseaccessnetwork.png|80%]]
 
 ## Wireless Access Networks
 
@@ -136,7 +136,7 @@ Despite the delay, store-and-forward is necessary to verify the integrity of the
 
 The internet is a network of networks.
 
-![[internetstructure.png| -m | -center]]
+![[internetstructure.png|80%]]
 
 >[!note]
 >**IXP**: internet exchange point

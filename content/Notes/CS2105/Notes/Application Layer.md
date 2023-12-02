@@ -2,7 +2,7 @@
 >[!note] Application layer defines…
 >communication behaviour of network applications.
 
-![[applicationlayer.png| -m | -center]]
+![[applicationlayer.png|80%]]
 
 # Principles of network applications
 
@@ -19,7 +19,7 @@
 ---
 
 ## Client-Server architecture
-![[clientservermodel.png| -xs | -center]]
+![[clientservermodel.png|30%]]
 
 ```start-multi-column
 ID: ID_b2x6
@@ -58,7 +58,7 @@ In ==P2P== architecture, data is downloaded from other *users* and is uploaded s
 
 ## Common requirements
 
-![[requirementsexample.png| -s | -center]]
+![[requirementsexample.png|50%]]
 ```start-multi-column
 ID: ID_jh8g
 Number of Columns: 2

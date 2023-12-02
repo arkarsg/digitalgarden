@@ -31,7 +31,7 @@ Most systems have more than one input device, each of which can be triggered at 
 
 Each trigger generates an ==event== whose *measure* is put in an ==event queue== which can be examined by the user program.
 
-![[triggerandmeasure.png| -m | -center]]
+![[triggerandmeasure.png|80%]]
 
 | **Types** | **Event**                                                            |
 | --------- | -------------------------------------------------------------------- |

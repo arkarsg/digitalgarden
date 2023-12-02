@@ -9,7 +9,7 @@
 >[!caution]
 >How to design the conceptual schema for a database application?
 
-![[databasedesign.png| -m | -center]]
+![[databasedesign.png|80%]]
 
 
 # Entity relationship diagrams
@@ -21,7 +21,7 @@
 > 2. Attributes (simple, composite, multivalued)
 > 3. Relationships (and their relationship types and relationship sets)
 
-![[ernotation.png| -m | -center]]
+![[ernotation.png|80%]]
 
 ---
 
@@ -38,7 +38,7 @@ To illustrate, use a ==COMPANY== database:
 - Each employee may have a number of ==DEPENDENTs==
 	- For each dependent, the DB keeps a record of name, sex, birthdate, and relationship to the employee.
 
-![[entityexamples.png| -s | -center]]
+![[entityexamples.png|50%]]
 
 ---
 
@@ -61,7 +61,7 @@ A ==specific entity== will have a value for each of its *attributes*. Each *attr
 
 **Multi-valued** : An entity may have multiple values for that attribute. This may also be nested arbitrarily to any number of levels
 
-![[compositeattribute.png| -center | -m]]
+![[compositeattribute.png|80%]]
 
 ### Entity types
 
@@ -78,7 +78,7 @@ Each key is <u>underlined.</u>
 
 
 
-![[entityset.png| -m | -center]]
+![[entityset.png|80%]]
 
 ### Entity set
 >[!note] Entity set
@@ -230,7 +230,7 @@ Alternatively, it can be specified with `(min, max)` notation for relationship s
 
 This implies that each entity $e$ in $E$ participates in at least $min$ and at most $max$ relationship instances in $R$
 
-![[relationshipnotation.png| -m  | -center]]
+![[relationshipnotation.png|80%]]
 
 ---
 

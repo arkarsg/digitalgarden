@@ -42,7 +42,7 @@ Video encoding rate changes as amount of spatial and temporal coding changes.
 >H.265, 10Mbps
 
 ## Stored video
-![[multimedia-storedvideo.png| -s | -center]]
+![[multimedia-storedvideo.png|50%]]
 
 Note that at the time the first chunk of the video is played, the last few parts of the video is being sent
 
@@ -51,7 +51,7 @@ Once client playout begins, playback must match original timing, but network del
 
 Video packets may be lost which are retransmitted. Therefore, the client payout delay needs to be adjusted so that the client payout is *always* on the right of client-video reception.
 
-![[multimedia-playout.png| -center | -s]]
+![[multimedia-playout.png|50%]]
 
 #### Client side buffering and playout delay
 Compensate for network-added delay, delay jitter.
@@ -108,7 +108,7 @@ Control connection is maintained *separately* using **RTSP** (real time streamin
 ### HTTP
 Multimedia file is received via HTTP GET. This is known as a client pull-based streaming.
 
-![[multimedia-buffer.png| -center | -m]]
+![[multimedia-buffer.png|80%]]
 
 
 ```start-multi-column
@@ -132,7 +132,7 @@ Shadow: off
 
 --- end-multi-column
 
-![[multimedia-http.png| -center | -m]]
+![[multimedia-http.png|80%]]
 
 ---
 
@@ -177,7 +177,7 @@ Receiver attempts to playout each chunk exactly $q$ ms after chunk was generated
 - *Estimate* network delay, *adjust* playout delay at beginning of each talk spurt
 - Silent periods *compressed* and *elongated*, chunks are still played out every 20ms during talk spurt
 
-![[multimedia-adaptiveplayoutdelay.png| -s | -center]]
+![[multimedia-adaptiveplayoutdelay.png|50%]]
 
 ### Adapting the value of $q$
 
@@ -191,7 +191,7 @@ For every group of $n$ chunks,
 
 #### **Piggyback**
 Send lower resolution audio stream as redundant information
-![[multimedia-piggyback.png| -s | -center]]
+![[multimedia-piggyback.png|50%]]
 
 #### Interleaving to conceal loss
 Audio chunks divided into smaller units ie four 5ms units per 20ms audio chunk. Packet contains small units from *different* chunks.

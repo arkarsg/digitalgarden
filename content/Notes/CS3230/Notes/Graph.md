@@ -86,7 +86,7 @@ When we consider a node $u$, there are $deg(u)$ incident edges $(u, v)$. The tot
 >> If a graph $G$ is bipartite, it cannot contain an odd length cycle.
 
 
-![[2colourable.png| -m  | -center]]
+![[2colourable.png|80%]]
 
 ---
 
@@ -108,7 +108,7 @@ When we consider a node $u$, there are $deg(u)$ incident edges $(u, v)$. The tot
 4. Consider cycle that takes edges from $x → y → z → x$.
 5. Its length is odd.
 
-![[lca.png| -center | -xs]]
+![[lca.png|30%]]
 
 ---
 

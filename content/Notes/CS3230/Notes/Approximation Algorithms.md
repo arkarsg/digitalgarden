@@ -73,7 +73,7 @@ Consider load $T$ of machine $M_i$ — machine $i$ attains the maximum load $T$ 
 - Its load just before this assignment is $T_i - t_j$ and since this is the smallest load, every other machine must have load at least $T_i - t_j$
 
 Therefore, we have
->[!aside | right +++++]
+>[!note]
 >In other words $m(T_i - t_j)$ is the lower bound of the sum of loads on the machines
 $$
 \sum_k T_k \geq m(T_i - t_j) \implies T_i - t_j \leq \frac{1}{m}\sum_k T_k
@@ -217,7 +217,7 @@ This is the lower bound on the cost of any solution.
 
 Consider a vertex cover $S$. By definition of fairness, $\sum_{e=(i, j)} p_e \leq w_i$ for all nodes $i$ in $S$. Adding these inequalities over all nodes in $S$:
 
-![[approximation-vertexcover.png| -s | -center]]
+![[approximation-vertexcover.png|500]]
 
 - Leftmost term: sum of terms, each of which s some edge price $p_e$
 - Each edge $e$ contributes at least one term $p_e$ to the leftmost term
@@ -258,13 +258,13 @@ Suppose that $S$ does not cover an edge i, j. This implies that neither $i$ nor 
 
 Combining the results above and the fairness lemma,
 
-![[approximation-vertexcoverproof.png| -s |-center]]
+![[approximation-vertexcoverproof.png|500]]
 
 ---
 # Integer Programming
 
 Given integers $a_{ij}$ and $b$, find integers $x_j$ that satisfy
-![[Screenshot 2023-11-18 at 12.20.44 PM.png | -m | -center]]
+![[Screenshot 2023-11-18 at 12.20.44 PM.png|500]]
 
 >[!example] Linear programming
 >Suppose we wish to maximise $6x + 5y$ with the following:
@@ -324,7 +324,7 @@ This is a *lower bound* on the optimum in the form of a computable quantity for 
 2. The set $S$ has vertices with $x_i^* \geq 1/2$ so the linear program paid for at least $½ w_i$ for node $i$
 3. We have to pay $w_i$ which is at most twice as much
 
-![[approx-vertexcoverLPrelaxation.png| -s | -center]]
+![[approx-vertexcoverLPrelaxation.png|500]]
 
 ---
 
@@ -334,11 +334,11 @@ Given a set of $m$ machines $M$ and a set of $n$ jobs $J$, assign jobs contiguou
 
 ## Formulation
 We have the *integer linear programming* formulation
-![[approx-loadbalancingIP.jpeg| -m | -center]]
+![[approx-loadbalancingIP.jpeg|500]]
 
 ### Relaxation
 Then, we relax $x_ij \in \{0, t_j\}$ with $x_ij \geq 0$
-![[approx-loadbalancingLP.png| -s | -center]]
+![[approx-loadbalancingLP.png|500]]
 
 >[!info] Let $L$ be the optimal value to $LP$, then the optimal makespan $L^* \geq L$
 
@@ -363,7 +363,7 @@ For any solution to LP, we can obtain a new solution $x$ with the same load $L$ 
 	1. If $j$ is a leaf node, assign $j$ to its parent machine $i$
 	2. If $J$ is not a leaf node, assign $j$ to one of its children
 
-![[approx-loadbalancingforest.jpeg| -m | -center]]
+![[approx-loadbalancingforest.jpeg|500]]
 
 >[!info] Rounded solution only assigns to jobs with authorised machines
 
@@ -384,19 +384,19 @@ Let $J(i)$ be the jobs assigned to $m_i$
 
 $L_i$ on machine $i$ has two components:
 1. Leaf nodes
-	![[approx-loadbalancingApprox.png| -m | -center]]
+	![[approx-loadbalancingApprox.png|500]]
 2. Parent(i)
 	$t_{\text{parent}(i)} \leq L^*$
 
 
 ## Structure of solution
 
-![[approx-loadbalancingstructure.jpeg| -s | -center]]
+![[approx-loadbalancingstructure.jpeg|500]]
 
 Solution to feasible flow problem with value $L$ are in 1-to-1 correspondance with $LP$ solutions of value $L$
 
 ### Finding acyclic solution
-![[approx-loadbalancingnetworkflow.png| -m | -center]]
+![[approx-loadbalancingnetworkflow.png|500]]
 
 ## Conclusion
 ==Running time== : Solving LP with mn + 1 variables
@@ -441,7 +441,7 @@ Given instance $(u_i, … , u_n , U)$ of Subset-sum, create Knapsack instance:
 - Adds weight $w_i$ and need to yield exactly $v - v_i$
 - OPT selects best of $1, …, i-1$ that achieves exactly value $v$
 
-![[approx-knapsackdp2.png| -m | -center]]
+![[approx-knapsackdp2.png|500]]
 
 ### Analysis
 ==Running time== : $O(n V^*) = O(n^2 V_{\text{max}})$, where $V^*$ is the maximum value of $v$ such that $OPT(n, v) \leq W$.
@@ -470,7 +470,7 @@ $$
 
 >[!info] Optimal solution with either rounded values are equivalent.
 
-![[approx-knapsackrounded.png| -m | -center]]
+![[approx-knapsackrounded.png|500]]
 
 ![[approx-knapsackApprox.png]]
 

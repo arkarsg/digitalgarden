@@ -158,7 +158,7 @@ When the node has a fresh frame to send, wait until the beginning of the next sl
 
 #### Propagation delay
 2 nodes may not hear each other’s transmission immediately
-![[linklayer-collision.png| -s | -center]]
+![[linklayer-collision.png|50%]]
 
 >[!caution] Another design flaw
 >One major design flaw in ALOHA and CSMA is that a node does not stop transmitting even when collision is detected.
@@ -168,7 +168,7 @@ When the node has a fresh frame to send, wait until the beginning of the next sl
 - If sensed busy: defer transmission
 - If collision detected: Abort transmission. Retransmit after random delay
 
-![[linklayer-collsioncsma.png| -center | -s]]
+![[linklayer-collsioncsma.png|50%]]
 
 If *collision detected*, abort transmission. How to *retransmit* after a random delay? Adapt retransmission attempts to estimated current load (more collisions implies heavier load)
 
@@ -199,7 +199,7 @@ The size of frame matters in CSMA
 >
 >*Ethernet* requires a minimum frame size of 64 bytes. 
 
-![[linklayer-nondetection.png| -s | -center]]
+![[linklayer-nondetection.png|50%]]
 
 >[!note]
 > ==collision-free== : No
@@ -220,7 +220,7 @@ Data transfer is over an unreliable medium and is bit-error prone. In a datagram
 | D         | EDC |
 where $D$ is data protected by error checking and may include header fields
 
-![[EDC.png| -s | -center]]
+![[EDC.png|50%]]
 - EDC can be $D$ itself
 ---
 
@@ -237,7 +237,7 @@ However, errors are often clustered together in ==bursts==. The probability of *
 Arrange the `d` bits in $i$ rows and $j$ columns.
 A parity value is computed for each row and for each column. The resulting $i + j + 1$ parity bits comprise the link-layer’s error detection bits.
 
-![[2dparity.png| -s | -center]]
+![[2dparity.png|50%]]
 In the example above, the parity bits of column and row is $2 + 2$ so the parity bit is $0$.
 >[!note]
 >A flipped bit will cause the parity bit in the row and column of that bit to be different.

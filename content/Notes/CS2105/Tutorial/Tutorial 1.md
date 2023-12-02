@@ -31,7 +31,7 @@ At `t = d_trans`, the first bit of packet is at B
 
 ##### g.
 
-![[tut01q1g.jpeg| -s | -center]]
+![[tut01q1g.jpeg|50%]]
 
 >[!caution]
 >It’s actually `0.0536 m`. Note that the question is `56 kbps`.

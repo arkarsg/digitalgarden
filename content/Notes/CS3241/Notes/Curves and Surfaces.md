@@ -201,7 +201,7 @@ $$
 u = 0, ⅓, ⅔, 1
 $$
 
-![[bezier-cubicinterpolation.png| -s | -center]]
+![[bezier-cubicinterpolation.png|50%]]
 
 With the 12 equations, solve for the coefficients.
 
@@ -254,7 +254,7 @@ $$
 Let $b(u)$ be a column matrix of 4 *blending polynomials*, where each is a cubic.
 >[!caution]
 >Refer to lecture notes
->![[bezier-blendingfunction.png| -m | -center]]
+![[[bezier-blendingfunction.png|80%]]
 
 With the blending function, we can transform $p(u)$ into a weighted sum of the control points:
 $$
