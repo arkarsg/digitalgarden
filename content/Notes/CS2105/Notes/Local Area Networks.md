@@ -112,7 +112,7 @@ Switches can be connected in hierarchy
 
 To create a LAN,
 ![[lan-lan.png|80%]]
-![[lan-to_internet.png| -m | -center]]
+![[lan-to_internet.png|80%]]
 ### Selective forwarding
 How does switch know $A$ is reachable via interface 1?
 Each switch has a *switch table*

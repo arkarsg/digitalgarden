@@ -160,7 +160,7 @@ IP datagram arrives too late for playout at the receiver. VoIP applications typi
 ### Loss tolerance
 Depending on voice encoding, loss concealment, packet loss rates between 1% and 10% can be tolerated
 
-![[Screenshot 2023-11-19 at 5.20.53 PM.png | -m | -center]]
+![[Screenshot 2023-11-19 at 5.20.53 PM.png|80%]]
 
 ## Fixed playout delay
 Receiver attempts to playout each chunk exactly $q$ ms after chunk was generated.

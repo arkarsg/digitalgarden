@@ -114,7 +114,9 @@ Given a connected directed graph $G = (V, E)$, find a partition of $V$ into two 
 >[!note]
 >Randomised method for global min-cuts
 
-Contraction algorithm works by choosing an edge $e$ at *random* and contracting it.![[IMG_53A448F55A23-1.jpeg | -m | -center]]
+Contraction algorithm works by choosing an edge $e$ at *random* and contracting it.
+![[IMG_53A448F55A23-1.jpeg|80%]]
+
 ```
 Pick an edge e uniformly at random
 Contract edge e
@@ -147,14 +149,14 @@ $$
 
 The cut $A, B$ will be returned if the algorithm did not contract any edges in $F$ in any of $n - 2$ iterations.
 
-![[IMG_AB444D47FB7E-1.jpeg | -m | -center]]
+![[IMG_AB444D47FB7E-1.jpeg|80%]]
 
 The probability of failure is very high. Probability of success is amplified by running the algorithm many times.
 
 #### Upper bound on failure
 If we repeat the contraction algorithm $n^2 \ln n$ times with independent random choices, the probability of failing to find the global min-cut is at most $1/n^2$
 
-![[Screenshot 2023-11-19 at 1.48.53 PM.png | -s | -center]]
+![[Screenshot 2023-11-19 at 1.48.53 PM.png|50%]]
 ---
 # Max 3-SAT
 
@@ -180,7 +182,7 @@ Let $p_j$ denote the probability that a random assignment satisfies exactly $j$ 
 
 Let $p$ be the probability that $\geq ⅞k$ clauses are satisfied.
 
-![[Screenshot 2023-11-19 at 2.18.10 PM.png | -s | -center]]
+![[Screenshot 2023-11-19 at 2.18.10 PM.png|50%]]
 Then, rearranging yields $p \geq \frac{1}{8k}$
 
 ## Analysis

@@ -5,7 +5,7 @@
 - Define $s$ as the source node and $t$ as the sink node
 - $c(e)$ is the capacity of edge $e$
 
-![[Screenshot 2023-10-16 at 11.51.47 PM.png | -m | -center]]
+![[Screenshot 2023-10-16 at 11.51.47 PM.png|80%]]
 
 >[!note] Cut
 >Define an $s-t$ cut as a partition $(A, B)$ of $V$ with $s \in A$ and $t \in B$
@@ -15,7 +15,7 @@ The ==capacity== of the cut is the sum of the capacities of outgoing edges from 
 >[!aside | right +++++]
 >Note that the edges into $A$ are not considered in the capacity of the cut
 
-![[Screenshot 2023-10-16 at 11.54.15 PM.png | -m | -center]]
+![[Screenshot 2023-10-16 at 11.54.15 PM.png|80%]]
 
 ---
 
@@ -44,12 +44,14 @@ $$
 
 In this case, if there exists a flow that is entering $A$, then we need to deduct the flow value from it.
 
-![[Screenshot 2023-10-17 at 12.08.26 AM.png | -m | -center]]
+![[Screenshot 2023-10-17 at 12.08.26 AM.png|80%]]
 
 **Proof**
 1. Value of flow : $v(f)  = \sum_{\text{e out of s}} f(e)$
 2. By flow conservation, all terms except $v = s$ are 0
-3. $$ \sum_{v \in A} \Big(
+3. 
+$$
+\sum_{v \in A} \Big(
 \sum_{\text{e out of v}} f(e) - \sum_{\text{e in to v}} f(e) \Big)
 $$
 
@@ -59,9 +61,9 @@ $$
 
 Let $f$ be any flow, and let $(A, B)$ be any $s-t$ cut. Then the value of the flow is at most the capacity of the cut
 
-![[Screenshot 2023-10-17 at 12.17.14 AM.png | -m | -center]]
+![[Screenshot 2023-10-17 at 12.17.14 AM.png|80%]]
 
-![[Screenshot 2023-10-17 at 12.17.38 AM.png | -m | -center]]
+![[Screenshot 2023-10-17 at 12.17.38 AM.png|80%]]
 
 ---
 
@@ -82,13 +84,13 @@ Let $f$ be any flow, and let $(A, B)$ be any cut. If $v(f) = cap(A, B)$, then $f
 > 
 > The greedy algorithm may not work as it finds the local optimum $\neq$ global optimum
 
-![[Screenshot 2023-10-17 at 12.23.51 AM.png | -center | -m]]
+![[Screenshot 2023-10-17 at 12.23.51 AM.png|80%]]
 
 ### Residual graph
 
 For an *original edge* $e = (u, v) \in E$, let flow = $f(e)$ and capacity = $c(e)$, the residual edge is the *opposite* of the flow edge : $e^R = (v, u)$
 
-![[Screenshot 2023-10-17 at 12.27.02 AM.png | -center | -m]]
+![[Screenshot 2023-10-17 at 12.27.02 AM.png|80%]]
 
 Then, we can construct a *residual graph* from residual edges with *positive* residual capacity
 

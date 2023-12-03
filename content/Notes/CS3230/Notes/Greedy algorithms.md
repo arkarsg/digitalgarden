@@ -232,7 +232,7 @@ Let $S$ be reduced schedule that satisfies invariant through $j$ requests. We pr
 4. **Case 2**: $d$ is not in the cache and $S$ and $S_{FF}$ evict the same element → $S = S’$ satisfies invariant
 5. **Case 3**: $d$ is not in the cache and $S_{FF}$ evicts $e$; $S$ evicts $f \neq e$
 
-![[ff_eviction.png| -m | -center]]
+![[ff_eviction.png|80%]]
 
 ---
 

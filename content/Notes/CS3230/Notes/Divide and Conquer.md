@@ -227,4 +227,4 @@ $$ T(n) \leq 2T(\frac{n}{2}) + O(n) \implies T(n) = O(n \log n) $$
 
 # Master theorem
 
-![[Master theorem.jpeg| -m | -center]]
+![[Master theorem.jpeg|80%]]

@@ -40,7 +40,7 @@ At `t = d_trans`, the first bit of packet is at B
 
 #### Question 2
 
-![[IMG_93E204C2121D-1.jpeg | -m | -center]]
+![[IMG_93E204C2121D-1.jpeg|80%]]
 
 >[!caution]
 >Be careful of bytes and bits. Do the necessary conversions
@@ -51,7 +51,7 @@ At `t = d_trans`, the first bit of packet is at B
 
 #### Question 3
 
-![[IMG_71BD76747656-1.jpeg | -m | -center]]
+![[IMG_71BD76747656-1.jpeg|80%]]
 
 Reasons to use message segmentation:
 - If a bit is corrupted, only the affected packet is dropped. Without message segmentation, the entire file have to be resent.

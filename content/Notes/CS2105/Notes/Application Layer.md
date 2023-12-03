@@ -47,7 +47,7 @@ Shadow: off
 --- end-multi-column
 
 ## P2P architecture
-![[Screenshot 2023-08-19 at 11.37.05 PM.png | -xs | -center]]
+![[Screenshot 2023-08-19 at 11.37.05 PM.png|30%]]
 In ==P2P== architecture, data is downloaded from other *users* and is uploaded simultaneously for other *users*. In this architecture, there is no dedicated user.
 - Not always-on server
 - Arbitrary end systems directly communicate

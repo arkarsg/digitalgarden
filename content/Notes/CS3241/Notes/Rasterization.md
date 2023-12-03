@@ -252,7 +252,7 @@ Rather than doing clipping on complex polygon, use an **axis-aligned bounding bo
 
 This is simple to compute: $\min$ and $\max$ of $x$ and $y$
 
-![[pipeline clipping.png| -m | -center]]
+![[pipeline clipping.png|80%]]
 
 ---
 

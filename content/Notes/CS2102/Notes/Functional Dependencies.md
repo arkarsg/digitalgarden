@@ -40,7 +40,7 @@ Consider the relational design where *employee* and *project* are in 1 table
 >
 >Alternately, if an employee is the sole employee on a project, deleting that employee would result in deleting that corresponding project.
 
-![[fd-functional_dependencies.png| -s | -center]]
+![[fd-functional_dependencies.png|50%]]
 This shows the functional dependencies where information from 2 or more entity types are mixed. (i.e. there is mixing of entity and relationship information in the relation)
 
 In (a), there are 2 *entities* mixed. In (b), there is a mix of two entity types and a relationship type.
@@ -156,7 +156,7 @@ $X → Y$ holds whenever two tuples have the same value for $X$, they **must** h
 FDs are derived from the real-world constraints on the attributes.
 
 >[!example]
-> ![[fd-functional_dependencies.png| -s | -center]]
+![[fd-functional_dependencies.png|50%]]
 > In (a), given the SSN, we can uniquely determine the name, date, address and Dnumber
 > 
 > So, $\text{SSN} → \text{ENAME}$,
@@ -471,13 +471,13 @@ Suppose
 $FD_3$ is not fully functionally dependent on (CountyName, LotNo) which is a candidate key $\implies$ violates 2NF
 
 Decompose into two tables
-![[Screenshot 2023-11-21 at 12.14.16 PM.png | -m | -center]]
+![[Screenshot 2023-11-21 at 12.14.16 PM.png|80%]]
 
 ### 3NF
 From $FD_1$, PropertyNo → Area → Price. Since *Area* is a non-prime attribute, there is a transitive dependency which violates 3NF
 
 Decompose the table that violates 3NF
-![[Screenshot 2023-11-21 at 12.15.57 PM.png | -m | -center]]
+![[Screenshot 2023-11-21 at 12.15.57 PM.png|80%]]
 
 ---
 >[!summary] Informally…
