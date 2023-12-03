@@ -71,7 +71,7 @@ Shadow: off
 - 1x RTT to establish TCP connection
 - 1x RTT for HTTP request and the first few bytes of HTTP response to return
 - 1x file transmission time
-![[rttsequence.png| -s | -center ]]
+![[rttsequence.png|50%]]
 
 >[!caution]
 >OS incurs overhead for every TCP connection.

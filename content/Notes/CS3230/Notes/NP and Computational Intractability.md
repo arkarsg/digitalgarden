@@ -386,11 +386,11 @@ Given an instance $\Phi$ of 3-SAT, construct an instance of 3D-matching that has
 - Create a gadget for each variable $x_i$ with $2k$ core and tip elements
 - No other triples will use core elemets
 - In gadget $i$, we must either use all the even triplets or the odd triplets
-![[np-3dmatching.png| - s | -center]]
+![[np-3dmatching.png|50%]]
 - For each class $C_j$, create two elements and three triplets
 - Exactly one of these triples will be used in any 3D matching
 - Ensures any 3D matching uses either odd or even
-![[np-3dmatching3sat.png| -center]]
+![[np-3dmatching3sat.png]]
 - For each tip, add a cleanup gadget  to cover the remaining tips
 
 ## Graph coloring

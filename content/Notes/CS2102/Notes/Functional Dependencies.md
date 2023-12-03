@@ -553,7 +553,7 @@ Suppose $R$ is not in BCNF, then there is a non-trivial decomposed FD $A$ → $B
 
 Therefore, if there is a violation of BCNF, there exists a closure on an attribute $A$ such that there is *more but not all* attributes.
 
-![[Screenshot 2023-11-21 at 12.28.11 PM.png | -center|500]]
+![[Screenshot 2023-11-21 at 12.28.11 PM.png|500]]
 
 **Decomposition may forgo the preservation of all functional dependencies**
 >[!caution]

@@ -6,7 +6,7 @@
 
 To render a primitive using OpenGL, the primitive goes through the following main stages:
 
-![[openglpipeline.png| -center]]
+![[openglpipeline.png]]
 
 ---
 
