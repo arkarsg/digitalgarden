@@ -11,7 +11,7 @@ const config: QuartzConfig = {
     },
     baseUrl: "arkarsg.github.io/notesrepo/",
     ignorePatterns: ["private", "templates", ".obsidian"],
-    defaultDateType: "created",
+    defaultDateType: "modified",
     theme: {
       typography: {
         header: "Inter",
