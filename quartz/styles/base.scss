@@ -138,6 +138,7 @@ a {
       gap: 2rem;
       top: 0;
       width: $sidePanelWidth;
+      height: fit-content;
       margin-top: $topSpacing;
       box-sizing: border-box;
       padding: 0 4rem;
@@ -155,9 +156,10 @@ a {
     & .sidebar.left {
       left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
 
-      @media all and (max-width: $fullPageWidth) {
-        gap: 0;
-        align-items: center;
+      &>* {
+        @media all and (max-width: $fullPageWidth) {
+          flex: 1;
+        }
       }
     }
 
@@ -475,7 +477,7 @@ video {
 
 ul.overflow,
 ol.overflow {
-  max-height: 400;
+  max-height: 700;
   overflow-y: auto;
 
   // clearfix
