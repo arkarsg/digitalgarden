@@ -2,8 +2,7 @@
 
 .search {
   min-width: fit-content;
-  max-width: 14rem;
-  flex-grow: 0.3;
+  flex: auto;
 
   & > #search-icon {
     background-color: var(--lightgray);
