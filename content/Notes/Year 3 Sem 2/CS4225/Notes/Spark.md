@@ -226,9 +226,31 @@ df3.count()                      # action
 # DataFrames
 
 - A DataFrame represents a table of data, similar to tables in SQL or DataFrames in `pandas`
+- Tells Spark what to do, instead of *how* to do it
+- Code is far more expressive as well as simpler
+- Spark can inspect or parse this query to understand the user’s intention. It can then optimise or arrange the operations to make it more efficient
 
 Compared to RDDs, this is a higher level interface. Transformations resemble SQL operations.
 
 >[!caution] 
 >All DataFrame operations are still ultimately compiled down to RDD operations by Spark
+
+---
+
+# Spark SQL
+
+- Spark can connect to a lot of storage solutions (incl HDFS, SQL, NoSQL, Kafka)
+- SQL does not imply SQL language. It just means relational operation.
+- This is because most business data are in tabular format
+
+## Catalyst optimiser
+Takes a computational query and converts it into an execution plan through 4 transformational phases:
+1. Analysis
+2. Logical computation
+3. Physical planning
+4. Code generation
+
+## Tungsten
+- Substantially improve the memory and CPU efficiency of Spark applications
+- Push performance closer to the limits of modern hardware
 
