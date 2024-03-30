@@ -302,5 +302,3 @@ clientSocket.close()
 ```
 
 --- end-multi-column
-
----
