@@ -76,6 +76,53 @@ Multiple instances → add many instances and configure a load balancer
 
 ---
 
+# Getting started
+
+## Community edition
+
+### Linux
+
+
+### Mac
+- Docker Desktop for Mac
+
+---
+
+# Docker run
+
+`docker run <image>`
+
+You can specify the version of the image with `tag` to pull the specific version. If the tag is not specified, the `latest` image is pulled.
+
+By default Docker container does not listen to the standard input.
+It runs in a non-interactive mode
+
+`docker run -i` maps the standard out of the container to the standard out of your device.
+
+`docker run -it` attaches the terminal and runs in interactive mode
+
+---
+
+## Port mapping
+
+Suppose we run docker container with a webapp, to access the webapp that is in a Docker host, ports need to be mapped
+
+---
+
+## Volume mapping
+Docker containers with MySQL.
+If the container is deleter, all database inside the container is gone too
+
+To persist the data, map the directory on the Docker host to a directory within the container with the `-v` option.
+
+This mounts the external directory to the internal directory inside the container. Thus, will remain even if the container is destroyed.
+
+`docker inspect` returns the state of all containers in a JSON format
+
+---
+
+
+
 
 
 
