@@ -20,6 +20,8 @@ Data science is:
 
 ### Volume
 Refers scale *(size)* of data
+
+Challenges of large volume
 - Performance
 - Cost
 - Reliability
@@ -31,6 +33,12 @@ Refers scale *(size)* of data
 
 ### Velocity
 Refers to the speed of *new* data that is streaming
+
+Challenges of high velocity
+- Performance
+- Cost
+- Reliability
+- Algorithm design complexity
 
 ### Variety
 Refers to the structure and format of the data

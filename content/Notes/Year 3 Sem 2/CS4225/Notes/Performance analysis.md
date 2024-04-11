@@ -1,3 +1,4 @@
+Given a big data system program, 
 - Analyzing scalability
 - Analyzing disk I/O and network I/O performance
 - Analyzing memory consumption

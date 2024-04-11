@@ -2,9 +2,14 @@
 title: Big Data Systems for Data Science
 ---
 
+# Notes
+1. [What is Data Science?](What%20is%20Data%20Science?.md)
+2. [Principles of Big Data Systems](Principles%20of%20Big%20Data%20Systems.md)
+3. [MapReduce](MapReduce.md) 
+
 # Assignments
-- [ ] Assignment 1 : Due **17 March**
-- [ ] Assignment 2 : Due **21 April**
+- [x] Assignment 1 : Due **17 March**
+- [x] Assignment 2 : Due **21 April**
 
 ---
 
