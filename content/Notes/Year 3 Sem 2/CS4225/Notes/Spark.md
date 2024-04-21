@@ -1,6 +1,8 @@
 ---
 title: Spark
 ---
+# Motivation
+
 
 # Spark
 - Big data processing solution
@@ -8,17 +10,21 @@ title: Spark
 - Considered an improvement from Hadoop foundation
 ---
 # Motivation
-## Limitations of Hadoop MapReduce
-- **Network and disk I/O costs**
-	- Intermediate data has to be written to local disks and shuffled across machines –> slow
-- Not suitable for *iterative* processing – such as KMeans clustering algorithm, as each individual iteration is modelled as a MapReduce job.
+## Hadoop vs Spark
 
-## Advantages of Spark
+### Issues with MapReduce
+- Network and disk I/O costs
+	- intermediate data has to be written to local disks and shuffle across machines, which is slow
+	- Not suitable for **iterative** algorithms and processing
+	- Each iteration requires 1 read from HDFS and 1 write to HDFS
+### Advantages of Spark
  **Spark** stores most of its intermediate results in *memory*, making it much faster, especially for iterative processing
+ 
  >[!note]
  >When mem is insufficient, Spark spills to disk which requires disk I/O
 
 - Ease of programmability
+	- Not a trivial problem for Java Hadoop
 - Spark core and Spark SQL engine supports different languages
 - Batch processing –> Very efficient with Spark SQL
 - Streaming and Graph processing –> Not very efficient
@@ -80,6 +86,13 @@ nameLen = dataRDD.map(lambda s: len(s))
 
 ### Transformations
 Transformations are a way of transforming RDDs into RDDs.
+- Examples of transformations:
+	- `map`
+	- `order`
+	- `groupBy`
+	- `filter`
+	- `join`
+	- `select`
 
 In Spark, transformations are *lazy*. Not executed until an ==action== is called on it.
 

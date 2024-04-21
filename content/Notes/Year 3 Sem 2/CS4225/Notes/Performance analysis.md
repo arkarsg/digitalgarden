@@ -70,11 +70,13 @@ Given the input, what is the;
 ### I/O Analysis
 For a MapReduce job,
 - Reading input from HDFS — *mainly* disk I/O
+	- Each chunk has 3 copies. In most cases, we can read from the local cases. In other cases, we may have to read from other machines
 - Shuffle and sort — disk and network I/O
 - Output — disk and network I/O
 
 #### Map task
 - Input disk I/O → one chunk → $128MB$
+- Intermediate results → very small, can be ignored
 - Output disk I/O → All `<word, 1>` pairs → number of words in the chunk
 - Network I/O → very small as it is executed on the local machine (unless there are failures)
 
@@ -83,10 +85,16 @@ For a MapReduce job,
 
 #### Reduce task
 - Input disk I/O → very small (input data is from the network)
-	- *Already counted in shuffling* – `reduce` task will read remotely from output of the `map` task
+	- *Already counted in shuffling* 
+	-  `reduce` task will read remotely from output of the `map` task
+	- Streaming read. Dont need to read all `key, values` pair 
+	- Is an iterator, consume the `values` one by one
 - Intermediate results → very small
 - Output disk I/O → very small
+	- For each `reducer`, it only outputs a `word` and a `count`
 - Network I/O → very small
+	- Except for failures
+
 `key, sum` is output to HDFS
 
 ### Memory consumption
@@ -96,8 +104,8 @@ For a MapReduce job,
 #### Reduce task
 - Reading `key, values` from other machines
 - The only variable maintained in the main memory is the `sum` → small memory working set
----
 
+---
 ## Version 1
 
 ```python
@@ -110,16 +118,21 @@ class Mapper:
 			emit(key, value)
 ```
 
-In comparison the `Version 0`, the mapper uses a hash table to maintain the words and counts *per document*. After processing each document, it emits the counts for the line.
+`value` - 1 document
+
+In comparison the `Version 0`, the mapper uses a hash table to maintain the words and counts *per document*. After processing **each** document, it emits the counts for the line.
 
 >[!example]
->Suppose a document consists of `1` word $n$ number of times.
+>Suppose a document consists of $1$ word $n$ number of times.
 >- *Version 0* will emit $n$ times
 >- *Version 1* will only emit **once**
 >
 >Works better when there are duplicate words
 
 ### Scalability
+
+#### Map
+- Max number of map tasks = input size / chunk size
 
 ### I/O analysis
 #### Map task
@@ -134,6 +147,10 @@ In comparison the `Version 0`, the mapper uses a hash table to maintain the word
 
 #### Shuffling
 - Network I/O : All `word, count` pairs → Number of distinct words in each document
+
+### Memory analysis
+#### Map
+- Memory working set: size of hashtable
 
 ---
 ## Version 2
@@ -151,11 +168,22 @@ class Mapper:
 			emit(key, value)
 ```
 
-Instead of removing duplicates one document per chunk at a time, the `map` is now class-level. `map` handles duplicates *across* documents in a chunk.
+Instead of removing duplicates one document per chunk at a time, the `map` is now class-level. 
+
+`map` handles duplicates *across* documents in a **chunk**.
+
+The mapper uses a hash table to maintain the words and counts across all lines in a single split
 
 >[!note] Preserve state across input key-value pairs
 
 - Memory consumption of `map` : ~ $100MB$ → Has a minimum requirement
 
 Therefore this is efficient in terms of I/O but may cause a lot of OOM.
+
+This is as good as a *light* combiner, however, it is up to the user to implement correctly. Can be seen as *in-memory* combiner
+
+---
+
+
+
 
