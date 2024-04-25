@@ -5,9 +5,32 @@ title: Spark
 
 
 # Spark
+
 - Big data processing solution
 - Leaves storage to users
 - Considered an improvement from Hadoop foundation
+
+## Spark design philosophy
+- Speed
+	- Expected to handle large amounts of data in parallel
+- Ease of use
+	- In comparison to hadoop MapReduce
+- Modularity
+	- Different modules targeting different fucntions
+- Extensibility
+	- Spark is a processor / compute engine
+	- Does not give storage solution
+		- Difficult to move data storage form one place to another
+		- Many organisations do not wish to move data
+		- Can connect to HDFS, SQL, NoSQL, Delta Lake etc
+
+>[!note]
+>Hadoop is compute + storage solution.
+>
+>Now, most approaches decouple compute from storage solutions
+
+
+![[Screenshot 2024-04-21 at 11.56.31 AM.png]]
 ---
 # Motivation
 ## Hadoop vs Spark
@@ -248,22 +271,145 @@ Compared to RDDs, this is a higher level interface. Transformations resemble SQL
 >[!caution] 
 >All DataFrame operations are still ultimately compiled down to RDD operations by Spark
 
+>[!note] RDD vs DataFrame
+> RDD level API requires you to use functional operators and tell Spark exactly what to do step by step.
+> 
+> DataFrames are expression based and requires users to tell Spark what they want
+
 ---
 
 # Spark SQL
-
-- Spark can connect to a lot of storage solutions (incl HDFS, SQL, NoSQL, Kafka)
-- SQL does not imply SQL language. It just means relational operation.
+- **Spark Core and Spark SQL Engine**
+	- SQL does not imply SQL language. It just means relational operation.
+- Unifies Spark components and permits abstraction to DataFrames in Java, Python, and R
 - This is because most business data are in tabular format
+- Keeps track of schema and support optimized relational operations
 
-## Catalyst optimiser
+![[Screenshot 2024-04-21 at 12.05.38 PM.png]]
+
+1. Spark SQL engine gets users’ queries
+2. Try to understand what user wants to do
+3. ==Catalyst optimiser== optimises logical and physical plan
+4. ==Tungsten== generates RDD level code which is already optimised
+
+## Catalyst optimizer
+
+![[Screenshot 2024-04-21 at 12.07.38 PM.png]]
+
 Takes a computational query and converts it into an execution plan through 4 transformational phases:
 1. Analysis
-2. Logical computation
+2. Logical plan
 3. Physical planning
 4. Code generation
+
+==Optimised logical plan== may not necessarily follow the logical plan that you have defined. Spark helps you to re-sequence and reorder.
+
+==Physical plan== defines how to exactly execute this code → creates a cost model and selects physical plan based on the cost model.
+
+>[!example]
+>```python
+>usersDf = read(“…”)
+>eventsDf = read(“…”)
+>
+>joinedDf = users
+>	.join(events, users.id == events.uid)
+>	.filter(events.date > “2015-01-01)
+>```
+> As users, we do not have to worry about which operation is carried out first. However, Spark will re-sequence for:
+
+![[Screenshot 2024-04-21 at 12.15.43 PM.png]]
+
 
 ## Tungsten
 - Substantially improve the memory and CPU efficiency of Spark applications
 - Push performance closer to the limits of modern hardware
+
+### Approach
+- Memory management and binary processing
+- Cache-aware computation
+	- Based on lineage, Spark will detect dataframe which are used later and caches for you. 
+- Code generation
+
+---
+
+# Spark ML
+
+## Classification
+- Categorise samples into classes, given training data
+## Regression
+- Predict numeric labels, given training data
+
+---
+
+## Typical ML pipeline
+
+```mermaid
+flowchart LR
+	preprocessing --> training --> testing --> evaluation
+```
+
+>[!note]
+>Here, we focus on `preprocessing` stage of the pipeline
+
+---
+
+## Data quality
+### Missing values
+- Causes
+	- Information was not collected
+	- Missing at random –> Missing values are randomly distributed
+	- Missing **not** at random –> the missingness itself may be important information
+- Handling missing values
+	- Eliminate rows with missing values
+	- Impute the missing values
+		- Based on the **mean/ median** of the missing values
+		- Fitting a regression model to predict the attribute given the other attributes
+		- Dummy variable: optionally insert a column which is `1` if the variable was missing and `0` otherwise. This can be an interesting feature.
+
+### Categorical encoding
+ML models will only take in numerical features. ==Categorical features== need to be converted to numerical features.
+
+#### One hot encoding
+- Convert discrete feature to a a series of binary features.
+- For example, when the 3 `groups` do not imply any order or ranking (ordinal relationship)
+- Therefore, `OHE` creates 3 columns
+
+### Normalization
+Many ML models prefer numbers to be in a small range represented by small floating number.
+
+==Normalize== the numbers to fit in a small range
+- `StandardScaler`
+- `MinMaxScaler`
+
+---
+## Main idea
+- ML involves fitting the *parameters* of a model by minimizing a loss / cost function
+
+### Gradient descent
+- Minimise $J$, the cost function.
+
+Find $w$, $b$ to minimize $J(w, b)$.
+
+- Start at an arbitrary point
+- Move following the **steepest** downward gradient
+- Continue until convergence
+	- Stop when improvement in $J$ is below a fixed threshold
+
+---
+## Evaluation
+
+### Evaluating classification model
+
+- ML model is used to classify patients with (positive label) or without (negative label) diabetes
+
+---
+## Pipelines
+- Build complex pipeline out of simple building blocks (ie encoding, normalization, feature transformation, model fitting)
+
+
+This allows for better code reuse between training and test pipelines, cross-validation, model varaints etc.
+
+Then, it is also easier to perform cross validation and hyperparameter tuning.
+
+
 
