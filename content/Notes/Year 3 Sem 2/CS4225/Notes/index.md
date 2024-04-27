@@ -2,7 +2,7 @@
 title: Big Data Systems for Data Science
 ---
 # To do
-- [ ] Revise streaming and watermarks
+- [x] Revise streaming and watermarks
 - [ ] Revise through the contents again
 - [ ] Do PyP
 # Notes

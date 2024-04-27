@@ -55,6 +55,8 @@ In the case of failure, revert to the previous batch.
 
 - Process streaming data as a list of micro-batches
 
+A data stream is treated as a table that is being continuously appended. This leads to a stream processing model that is similar to batch processing model
+
 ---
 
 ### Advantages
@@ -101,7 +103,6 @@ Spark does very well for tabular data → treat streaming data as an **unbounded
 - Process each row individually without needing any information from previous rows
 - Projection operators
 - Selection operators
-
 
 ### Stateful transformation
 - `df.groupBy().count()`
@@ -156,6 +157,30 @@ Assume each event packet has hardcoded timestamp
 >[!note] How to determine the end pont. 
 
 
+## Window operations
+Aggregations over sliding event-time
+
+Example : Instead of running word counts, count words within *10 minutes* windows, updating every *5 minutes*
+
+![window-aggregation|500](Screenshot%202024-04-27%20at%201.05.58%20PM.png)
+
+```python
+words = ...
+
+windowedCounts = words.groupBy(
+	window(words.timestamp, "10 minutes", "5 minutes),
+	words.word
+).count()
+```
+
+Suppose there is a data with event time `1204` that arrives at `1211`. With window operations, this occurs naturally.
+
+![window|500](Screenshot%202024-04-27%20at%201.18.54%20PM.png)
+
+However, intermediate in-memory state accumulates
+- need to know when old aggregate can be dropped from the in-memory state
+- application is not going to receive late data for that aggregate anymore
+
 ## Handling late data with watermarks
 
 ```python
@@ -166,6 +191,66 @@ Assume each event packet has hardcoded timestamp
 		 .count()
 )
 ```
+
+- There will be delays between event time and processing time
+- Needs mechanism to decide when to close the aggregate windows and produce aggregate result
+
+>[!caution] Why wall clock does not work to remedy delays
+>Suppose we are receiving `temperature` and `pressure` readings from 10.50 AM → 11.20 AM with a 10-minute tumbling windows that calculate the average that came in during that windowed period.
+>
+>![wall-clock-stream](Screenshot%202024-04-27%20at%2012.15.40%20PM.png)
+>
+>When there is a late data, the data gets incorporated into the wrong window which does not give the correct result
+>
+
+==Watermark== allow Spark to understand when to close the aggregate window and produce the correct aggregate result
+
+> With watermarks, Spark Structured Streaming knows that it has ingested all data up to some time, $T$, so that it can close and produce windowed aggregates up to timestamp $T$.
+> 
+> Maintain state and allow late data to update the state until `max event time seen by the engine - late threshold > T`
+
+>[!example]
+>Suppose there is a watermark of 10 minutes
+>
+>![watermarked](Screenshot%202024-04-27%20at%2012.19.45%20PM.png)
+>
+>Unlike the wall clock approach, Spark now *waits* to close and output the windowed aggregation once the *max* event time **seen** minus the specified watermark is greater than the upper bound of the window.
+>
+>At $t = 11.00AM$ and for the window $10.50AM → 11.00AM$,
+>- `upper_bound = 1100`
+>- `max_event_time = 1056`
+>- `max_event_time - watermark = 1046`
+>- Since `max_event_time - watermark` is less than the `upper_bound`, Spark will not emit any results in this window
+>
+>At $t = 11.20AM$ and for the window $10.50AM → 11.00AM$,
+>`upper_bound = 1100`
+>- `max_event_time = 1115`
+>- `max_event_time - watermark = 1105`
+>- Since `max_event_time - watermark` is greater than the `upper_bound`, Spark outputs results in this window and has handled the late data
+
+```python
+words = ...
+windowedCounts = words \
+	.withWatermark("timestamp", 10) \
+	.groupBy(
+		window(words.timestamp, 10, 5),
+		words.word
+	) \
+	.count()
+```
+
+![watermarking-and-window](Pasted%20image%2020240427132936.png)
+
+### Trade-offs
+
+| Window Delay Length  | Precision        | Latency        |
+| -------------------- | ---------------- | -------------- |
+| Longer delay window  | Higher precision | Higher latency |
+| Shorter delay window | Lower precision  | Lower latency  | 
+
+Longer delay window cause the pipeline to:
+- wait longer for data and potentially drop less data → higher precision
+- at the cost of higher latency to produce aggregates
 
 #### References
 - [Watermarking structured streaming](https://www.databricks.com/blog/feature-deep-dive-watermarking-apache-spark-structured-streaming)
@@ -270,7 +355,13 @@ Number of slots can be configured based on the load of the tasks. The `TaskManag
 ![flink-state-management|500](Screenshot%202024-04-21%20at%207.25.12%20PM.png)
 
 ### How do they `checkpoint`?
-- Uses a special record
+- Uses a special record, called *stream barriers*
+- Injected into the data stream
+- Barriers never overtake records and flow strictly in line
+
+![barrier-stream|400](Screenshot%202024-04-27%20at%201.51.00%20PM.png)
+
+
 
 ---
 
