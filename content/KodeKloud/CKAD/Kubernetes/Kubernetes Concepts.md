@@ -45,3 +45,187 @@ Lists all the `pods`
 
 ---
 
+## Pods with YAML
+
+Every Kubernetes definition file always contain and require the following definition fields:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+	name: myapp-pod
+	labels:
+		app: myapp
+		type: front-end
+spec:
+	containers:
+		- name: nginx-container
+		  image: nginx
+```
+
+- `apiVersion` : Kubernetes API version to create the object
+	- Pod: v1, Service: v1, ReplicaSet: apps/v1, Deployment: apps/v1
+- `kind` : type of object we are trying to create
+	- `ReplicaSet | Deployment | Service | Pod`
+- `metadata` : Metadata about the object
+	- A dictionary
+	- `label` can have any key-value as you wish
+- `spec`
+	- Lists of containers
+
+Once the definition is created, create the pod with
+```
+kubectl create -f pod-definition.yml
+```
+
+---
+
+# Controllers
+Controllers are processes that monitors Kubernetes objects and spawns accordingly
+
+## Replication Controller
+
+>[!note] What is a replica?
+>If a pod fails, a *replica* pod running is still running → users do not lose access to application –> high availability
+>
+>Replication controller can also bring up a new pod if a pod fails
+
+
+### Load balancing
+Multiple pods are created to load balance. When the number of users increase a new pod is created to balance the load across 2 pods.
+
+Replication controller can span across multiple clusters to balance between pods in different nodes
+
+### ReplicaSet
+Both have the same purpose but not the same
+
+`ReplicaSet` replaces Replication Controller in newer versions of Kubernetes
+
+---
+### Replication controller YAML
+
+```yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+	name: myapp-rc
+	labels:
+		app: myapp
+		type: frontend
+spec:
+	- template:
+		metadata:
+			name: myapp-pod
+			labels:
+				app: myapp
+				type: front-end
+		spec:
+			containers:
+				- name: nginx-container
+				  image: nginx
+replicas: 3
+```
+
+- `template` defines what pod is being replicated
+- `replicas` defines how many replicas should be created
+
+```
+kubectl create -f rc-definition.yml
+```
+
+View the replication controller
+```
+kubectl get replicationcontroller
+```
+
+View pods created by replication controller
+```
+kubectl get pods
+```
+
+## ReplicaSet
+
+```yaml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+	name: myapp-replicaset
+	labels:
+		app: myapp
+		type: front-end
+spec:
+	template:
+		metadata:
+			name: myapp-pod
+			labels:
+				app: myapp
+				type: front-end
+		spec:
+			containers:
+				- name: nginx-container
+				  image: nginx
+	selector:
+		matchLabels:
+			type: front-end
+	replicas: 3
+```
+
+>[!caution]
+>ReplicaSet requires a `selector` which defines what pods fall under it
+
+ReplicaSet can also manage pods that are not created as part of the ReplicaSet creation with the `selector` field
+
+---
+
+# Labels and Selectors
+Suppose we create 3 pods for our front-end. We want to ensure that there are 3 pods running at the same time at all times.
+
+If they are not created, `ReplicaSet` will create them for you
+
+How does `ReplicaSet` know what pod to monitor?
+- `labels` are used as a filter for `ReplicaSet`
+
+# Scale
+Suppose we have a ReplicaSet definition with 3 replicas and we wish to scale up to 6
+
+## Changing the definition
+```yaml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+	name: myapp-replicaset
+	labels:
+		app: myapp
+		type: front-end
+spec:
+	- template:
+		metadata:
+			name: myapp-pod
+			labels:
+				app: myapp
+				type: front-end
+		spec:
+			containers:
+				- name: nginx-container
+				  image: nginx
+replicas: 6
+selector:
+	matchLabels:
+		type: front-end
+```
+
+Then, run
+```
+kubectl replace -f replicaset-definition.yml
+```
+
+## Scale command
+```
+kubectl scale --replicas=6 -f replicaset-definition.yml
+```
+
+```
+kubectl scale --replicas=6 replicaset myapp-replicaset
+```
+
+Note that this does not change the definition of the ReplicaSet
