@@ -229,3 +229,140 @@ kubectl scale --replicas=6 replicaset myapp-replicaset
 ```
 
 Note that this does not change the definition of the ReplicaSet
+
+---
+
+# Deployments
+
+How might you deploy an application in a production environment?
+
+For example, we may need multiple instances of the web server. When there are newer versions of the images available, how to upgrade Docker instances seamlessly?
+
+- Upgrading all at once may impact users. Updating instances one by one is called a *rolling update*
+- Revert → rollback
+- If there are multiple changes, `pause`, apply all changes, then `resume`
+
+Kubernetes Deployments are higher in the hierarchy:
+A ReplicaSet is automatically created with a Deployment
+![k8s-deployment](Screenshot%202024-05-09%20at%2010.44.51%20PM.png)
+
+>[!note]
+>Deployment definitions are similar to ReplicaSet
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+	name: myapp-deployment
+	labels:
+		tier: frontend
+		app: nginx
+spec:
+	template:
+		metadata:
+			name:
+			labels:
+		spec:
+			containers:
+
+	replicas:
+	selector:
+		matchLabels:
+```
+
+Create a deployment:
+
+```
+k create -f deployment-definition.yml
+```
+
+Observe the deployment
+```
+k get deployments
+```
+
+Deployment automatically creates a ReplicaSet:
+```
+k get replicaset
+```
+
+ReplicaSet create pods
+```
+k get pods
+```
+
+---
+
+To see all the objects created,
+```
+k get all
+```
+
+```
+k describe deployment myapp-deployment
+```
+
+---
+
+## Updates and Rollback
+
+### Rollout
+When a deployment is first created, it triggers a *rollout*. Suppose it is called `revision 1`.
+
+When the container version is updated to a new one, a new rollout is triggered and a new revision is created.
+
+This helps us keep track of the deployment and enables us to rollback.
+
+To see the status of the rollout by running the command
+```
+kubectl rollout status deployment/myapp-deployment
+```
+
+To see the revisions and history of rollout,
+```
+kubectl rollout history deployment/myapp-deployment
+```
+
+### Deployment strategies
+Suppose there are 5 instances of the application
+
+1. Destroy all instances and deploy 5 new instances
+
+However, the problem is that between the period, the application is down and users cannot access the application. This approach is known as `Recreate`
+
+Old `ReplicaSet` is scaled down to 0 then scaled up again.
+
+2. Take down the older instances one by one and update.
+
+This upgrade is seamless and is known as `RollingUpdate`. This is the default update strategy.
+
+### How to update?
+
+Since we have the definition file, we can simply update the definition and,
+```
+kubectl apply -f deployment-definition.yaml
+```
+
+Alternatively, we can
+```
+kubectl set image deployment/myapp-deployment nginx-container=nginx:1.9.1
+```
+However, doing it this way result in deployment having different definition from definition file
+
+### Under the hood
+1. When a Deployment is created, Kubernetes automatically creates a ReplicaSet and deploy the pods
+2. When there is an update, Kubernetes create a new ReplicaSet and deploy pods. Simultaneously, it takes down the pods in the old ReplicaSet.
+
+### Rollback
+To undo a change
+```
+kubectl rollout undo deployment/myapp-deployment
+```
+1. Kubernetes destroy the pods in the new ReplicaSet
+2. Kubernetes brings up the pods in the old ReplicaSet
+
+Note that this creates a new Revision which is also equivalent to the previous revision.
+
+
+
+
