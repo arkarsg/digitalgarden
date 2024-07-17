@@ -69,15 +69,18 @@ spec:
 k get services
 ```
 
-Acts as a LoadBalancer using random algorithm
+>[!note] What if there are multiple pods?
+>Acts as a built-in LoadBalancer using random algorithm
 
 >[!note]
->The service created spans across all nodes in the cluster
+>The service created spans across all nodes in the cluster and selects the pods without any additional configuration
 
 ### ClusterIP
 > Makes a virtual IP inside the cluster to enable communication between different services
 
-Provides a single interface to access the other pods
+Necessary as IP addresses of pods are not static. If a pod goes down, a new IP address is assigned. Furthermore, if there are multiple pods, how does another pod decide which pod to connect to?
+
+ClusterIP provides a single interface to access the other pods
 
 Pods communicate with services instead of other pods directly
 
@@ -89,8 +92,8 @@ metadata:
 spec:
 	type: ClusterIP
 	ports:
-		- targetPort: 80
-		  port: 80
+		- targetPort: 80 # where the backend is exposed
+		  port: 80 # where the service is exposed
 	# Link service to a set of pods
 	selector:
 		app: myapp

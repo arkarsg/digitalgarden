@@ -702,3 +702,7 @@ Node affinity types defines the behaviour of the scheduler and the stages in the
 If a node affinity type is `required`, the pod will never be scheduled if it cannot find the label.
 If a node affinity type is `preferred`, the pod will be placed on any available nodes. The node affinity rules are ignored.
 
+---
+# Node affinity vs Taints & Tolerations
+
+
