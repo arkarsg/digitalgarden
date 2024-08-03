@@ -3,14 +3,14 @@ import * as Plugin from "./quartz/plugins"
 
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "🪴 Some notes",
+    pageTitle: "🪴 Digital Garden",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
       provider: "plausible",
     },
-    baseUrl: "arkarsg.github.io/notesrepo/",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    baseUrl: "arkarsg.github.io/digitalgarden/",
+    ignorePatterns: ["private", "templates", ".obsidian", ".py"],
     defaultDateType: "modified",
     theme: {
       typography: {
@@ -47,7 +47,7 @@ const config: QuartzConfig = {
       Plugin.FrontMatter(),
       Plugin.TableOfContents(),
       Plugin.CreatedModifiedDate({
-        priority: ["frontmatter", "filesystem"], // you can add 'git' here for last modified from Git but this makes the build slower
+        priority: ["frontmatter", "filesystem", "git"], // you can add 'git' here for last modified from Git but this makes the build slower
       }),
       Plugin.SyntaxHighlighting(),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
