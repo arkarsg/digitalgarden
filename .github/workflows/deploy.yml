@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  pull-submodule:
+  pull:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
@@ -37,6 +37,7 @@ jobs:
           git push
 
   build:
+    needs: pull
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
