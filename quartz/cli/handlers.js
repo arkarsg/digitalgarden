@@ -484,7 +484,9 @@ export async function handleSync(argv) {
       timeStyle: "short",
     })
     const commitMessage = argv.message ?? `Quartz sync: ${currentTimestamp}`
-    spawnSync("git", ["submodule", "update", "content"], { stdio: "inherit" })
+    spawnSync("git", ["submodule", "update", "--remote", "--merge", "content"], {
+      stdio: "inherit",
+    })
     spawnSync("git", ["add", "."], { stdio: "inherit" })
     spawnSync("git", ["commit", "-m", commitMessage], { stdio: "inherit" })
 
