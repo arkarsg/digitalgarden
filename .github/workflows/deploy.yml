@@ -1,8 +1,6 @@
 name: Deploy Quartz site to GitHub Pages
 
 on:
-  repository_dispatch:
-    types: [trigger-workflow]
   push:
     branches:
       - v4
@@ -17,27 +15,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  fetch:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: recursive
-          token: ${{ secrets.PAT_TOKEN }}
-          fetch-depth: 0
-      - name: Pull from submodule
-        run: |
-          git submodule update --init --recursive
-          git submodule update --recursive --remote
-
-      - name: Commit & Push
-        run: |
-          git config user.email "actions@github.com"
-          git config user.name "GitHub Actions - update submodules"
-          git add --all
-          git commit -m "Update submodules" || echo "No changes to commit"
-          git push
-
   build:
     needs: fetch
     runs-on: ubuntu-22.04

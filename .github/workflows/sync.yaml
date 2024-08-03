@@ -1,0 +1,29 @@
+name: Sync submodule
+on:
+  repository_dispatch:
+    types:
+      - trigger-workflow
+jobs:
+  update-submodule:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          submodules: recursive
+      - name: Authorize Git
+        run: |
+          git config --global user.email "$GITHUB_ACTOR@github.com"
+          git config --global user.name "$GITHUB_ACTOR"
+      - name: Update submodule
+        run: |
+          git submodule update  --init --recursive --remote
+      - name: Commit changes
+        run: |
+          git add --all
+          git commit -m "Update submodule to latest commit" || echo "No changes to commit"
+          git push
