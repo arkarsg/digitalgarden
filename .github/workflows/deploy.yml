@@ -23,6 +23,19 @@ jobs:
           submodules: recursive
           token: ${{ secrets.PAT_TOKEN }}
           fetch-depth: 0
+      - name: Pull & update from vault submodule
+        run: |
+          git submodule update --init --recursive
+          git submodule update --recursive --remote
+
+      - name: Commit & Push
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions - update submodules"
+          git add --all
+          git commit -m "Update submodules" || echo "No changes to commit"
+          git push
+
       - uses: actions/setup-node@v3
         with:
           node-version: 18.14
