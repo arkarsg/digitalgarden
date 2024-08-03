@@ -1,4 +1,0 @@
----
-title: Manipulating DataFrames
----
-
