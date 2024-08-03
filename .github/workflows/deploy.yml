@@ -1,6 +1,8 @@
 name: Deploy Quartz site to GitHub Pages
 
 on:
+  repository_dispatch:
+    types: [trigger-workflow]
   push:
     branches:
       - v4
