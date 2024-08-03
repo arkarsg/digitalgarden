@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  update:
+  fetch:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
@@ -39,7 +39,7 @@ jobs:
           git push
 
   build:
-    needs: pull
+    needs: fetch
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
